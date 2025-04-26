@@ -149,8 +149,8 @@
 
   <!-- 模式切换按钮 -->
   <div style="text-align: center; margin-bottom: 20px;">
-    <button onclick="switchToTeacherMode()" style="padding: 8px 16px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Teacher Mode</button>
-    <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Student Mode</button>
+    <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Student Mode</button>
+    <button onclick="switchToTeacherMode()" style="padding: 8px 16px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">Teacher Mode</button>
   </div>
 
   <!-- 表格 -->
@@ -163,11 +163,9 @@
           <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
         </tr>
       </thead>
-      <tbody id="pointsTable">
-      </tbody>
+      <tbody id="pointsTable"></tbody>
     </table>
 
-    <!-- 添加学生 -->
     <div id="addStudentArea" style="margin-top: 30px; text-align: center;">
       <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
       <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
@@ -178,13 +176,38 @@
 
   <!-- 排行榜柱状图 -->
   <div style="display: flex; justify-content: center; margin-top: 30px;">
-    <canvas id="pointsChart" style="display: none; max-width: 700px; width: 100%; height: 400px;"></canvas>
+    <canvas id="pointsChart" style="display: none; max-width: 700px; width: 100%; height: 200px;"></canvas>
+  </div>
+</section>
+
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+<!-- Ask a Question Section -->
+<section id="ask" class="content-section">
+  <h2>Ask a Question</h2>
+  <div style="text-align: center; margin-top: 20px;">
+    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="name">Name (optional):</label>
+        <input type="text" id="name" name="name" placeholder="You can leave this blank">
+      </div>
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
+        <textarea id="question" name="question" rows="4" required></textarea>
+      </div>
+      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
+    </form>
+  </div>
+
+  <!-- 问题列表 -->
+  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
+    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
   </div>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// 设置
 const PASSWORD = 'monash';
 const defaultStudents = [
   { name: "Alice Chen", points: 12 },
@@ -201,37 +224,21 @@ function renderTable() {
   const table = document.getElementById('pointsTable');
   table.innerHTML = '';
   students.forEach((student, index) => {
+    const isGold = student.points >= 50;
     table.innerHTML += `
       <tr>
-        <td style="padding: 10px; border: 1px solid #ddd;">${student.name}</td>
+        <td style="padding: 10px; border: 1px solid #ddd; ${isGold ? 'color: goldenrod; font-weight: bold;' : ''}">${student.name}</td>
         <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
         <td style="padding: 10px; border: 1px solid #ddd;">${
           isTeacherMode ? `
-          <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1分</button>
-          <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; margin-right: 5px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1分</button>
+          <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1</button>
+          <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; margin-right: 5px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1</button>
           <button onclick="deleteStudent(${index})" style="padding: 6px 10px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
           ` : ''
         }</td>
       </tr>
     `;
   });
-}
-
-// 改积分
-function changePoint(index, delta) {
-  students[index].points += delta;
-  saveData();
-  highlightPoint(index);
-  renderTable();
-}
-
-// 移除学生
-function deleteStudent(index) {
-  if (confirm("Are you sure you want to remove this student?")) {
-    students.splice(index, 1);
-    saveData();
-    renderTable();
-  }
 }
 
 // 高亮动画
@@ -245,9 +252,26 @@ function highlightPoint(index) {
   }
 }
 
-// 保存
+// 修改积分
+function changePoint(index, delta) {
+  students[index].points += delta;
+  saveData();
+  highlightPoint(index);
+  renderTable();
+}
+
+// 保存数据
 function saveData() {
   localStorage.setItem('students', JSON.stringify(students));
+}
+
+// 删除学生
+function deleteStudent(index) {
+  if (confirm("Are you sure you want to remove this student?")) {
+    students.splice(index, 1);
+    saveData();
+    renderTable();
+  }
 }
 
 // 添加学生
@@ -264,7 +288,7 @@ function addStudent() {
   }
 }
 
-// 切换教师模式
+// 模式切换
 function switchToTeacherMode() {
   const inputPassword = prompt('Enter teacher password:');
   if (inputPassword === PASSWORD) {
@@ -277,7 +301,6 @@ function switchToTeacherMode() {
   }
 }
 
-// 切换学生模式
 function switchToStudentMode() {
   isTeacherMode = false;
   document.getElementById('tableContainer').style.display = 'none';
@@ -293,10 +316,6 @@ function renderChart() {
   }
   students.sort((a, b) => b.points - a.points);
 
-  const gradient = ctx.createLinearGradient(0, 0, 600, 0);
-  gradient.addColorStop(0, '#81c784');
-  gradient.addColorStop(1, '#388e3c');
-
   chartInstance = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -304,7 +323,7 @@ function renderChart() {
       datasets: [{
         label: 'Points',
         data: students.map(s => s.points),
-        backgroundColor: gradient,
+        backgroundColor: students.map(s => s.points >= 50 ? 'goldenrod' : '#81c784'),
         borderRadius: 8,
         barThickness: 20
       }]
@@ -312,65 +331,52 @@ function renderChart() {
     options: {
       indexAxis: 'y',
       responsive: true,
-      layout: {
-        padding: {
-          top: 10,
-          bottom: 10
-        }
-      },
       scales: {
-        x: {
-          beginAtZero: true,
-          ticks: {
-            color: '#333'
-          }
-        },
-        y: {
-          ticks: {
-            color: '#333',
-            font: {
-              size: 14
-            }
-          }
-        }
+        x: { beginAtZero: true },
+        y: { ticks: { color: '#333', font: { size: 14 } } }
       },
       plugins: {
-        legend: {
-          display: false
-        },
-        tooltip: {
-          enabled: true
-        },
-        datalabels: {
-          anchor: 'end',
-          align: 'right'
-        }
+        legend: { display: false }
       },
       animation: {
-        duration: 1000,
+        duration: 800,
         easing: 'easeOutBounce'
       }
     }
   });
 }
 
-// 页面默认学生模式
+// 默认加载学生模式
 window.onload = switchToStudentMode;
-</script>
 
-  <!-- Ask a Question -->
-  <section id="ask" class="content-section">
-    <h2>Ask a Question</h2>
-    <form id="localAskForm" class="ask-form">
-      <label for="studentQuestion">Your Question (optional anonymous):</label><br>
-      <textarea id="studentQuestion" name="studentQuestion" rows="5" required></textarea><br><br>
-      <button type="submit" class="submit-button">Submit</button>
-    </form>
-    <div id="thankYouMessage" style="display:none; text-align:center; margin-top:20px;">
-      <h3>Thank you for your question!</h3>
-      <p>We'll review your query shortly.</p>
-    </div>
-  </section>
+// 提交问题保存
+document.getElementById('questionForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const question = document.getElementById('question').value.trim();
+  if (question) {
+    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+    allQuestions.push({ name: name, question: question });
+    localStorage.setItem('questions', JSON.stringify(allQuestions));
+    alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
+    this.reset();
+    displayQuestions();
+  }
+});
+
+// 展示保存的问题
+function displayQuestions() {
+  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+  const list = document.getElementById('questionsDisplay');
+  list.innerHTML = '';
+  allQuestions.forEach(q => {
+    list.innerHTML += `<li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>`;
+  });
+}
+
+// 页面加载时展示提问
+displayQuestions();
+</script>
 
   <!-- Contact -->
   <section id="contact" class="content-section">
