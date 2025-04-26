@@ -1,133 +1,192 @@
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-family: Arial, sans-serif;
-  background: #eaf6fb;
+  background: #f9f9f9;
   color: #333;
   line-height: 1.6;
 }
+
+/* Header */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: #fff;
   padding: 10px 20px;
-  border-bottom: 1px solid #cce4f6;
+  border-bottom: 1px solid #ddd;
   position: sticky;
   top: 0;
   z-index: 100;
 }
+
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #007acc;
 }
+
 .main-nav ul {
   list-style: none;
   display: flex;
   gap: 15px;
 }
+
 .main-nav a {
   text-decoration: none;
-  color: #007acc;
+  color: #333;
   font-weight: 500;
 }
+
+/* Hero section */
 .hero {
-  background: url('https://source.unsplash.com/1600x500/?melbourne,landscape') center/cover no-repeat;
+  background: url('你的背景图片.jpg') center/cover no-repeat;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 40px;
 }
+
 .hero-content {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.8);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   text-align: center;
 }
+
 .hero-content h1 {
   font-size: 32px;
   margin-bottom: 10px;
-  color: #005f99;
 }
+
 .hero-content p {
   font-size: 18px;
 }
+
+/* Grid sections */
 .grid-section {
   padding: 0 20px 40px;
-  background: #ffffff;
+  background: #fff;
   margin-bottom: 20px;
 }
+
+.grid-section h2 {
+  font-size: 28px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Cards */
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
+
 .card {
-  background: #ffffff;
-  border: 1px solid #cce4f6;
-  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
 .card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 8px 16px rgba(0, 122, 204, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .card img {
   width: 100%;
   height: 150px;
   object-fit: cover;
 }
+
 .card h3 {
   padding: 10px;
   font-size: 18px;
+  text-align: center;
 }
+
+/* Content sections */
 .content-section {
-  background: #ffffff;
+  background: #fff;
   margin: 20px;
   padding: 20px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
+
+.content-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Lists and links */
 .content-section ul {
   list-style: disc inside;
 }
+
 .content-section a {
-  color: #007acc;
+  color: #0066cc;
   text-decoration: none;
 }
+
+/* Videos */
 .video-embed {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
-.ask-form input[type="text"],
-.ask-form textarea {
+
+/* Table styles (for Classroom Points) */
+table {
   width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #eaf6fb;
+}
+
+th, td {
   padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #cce4f6;
-  border-radius: 6px;
-  font-size: 16px;
+  border: 1px solid #ddd;
+  text-align: left;
 }
-.submit-button {
-  background: linear-gradient(to right, #66c2ff, #007acc);
-  color: #fff;
-  padding: 10px 20px;
+
+/* Buttons */
+button {
+  padding: 8px 16px;
+  background-color: #007acc;
+  color: white;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 }
-.submit-button:hover {
-  background: #005f99;
+
+button:hover {
+  background-color: #005f99;
 }
+
+/* Input fields */
+input, textarea {
+  padding: 8px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     height: 200px;
@@ -140,29 +199,3 @@ body {
     height: auto;
   }
 }
-
-.hero {
-  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/World_Map_Blank_without_borders.svg/1200px-World_Map_Blank_without_borders.svg.png') center/cover no-repeat;
-  background-color: #eaf6fb;
-  height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 40px;
-}
-
-.section-icon {
-  height: 30px;
-  vertical-align: middle;
-  margin-right: 10px;
-}
-
-.card img {
-  height: 40px;
-  margin-top: 10px;
-}
-
-.card h3 {
-  margin-top: 10px;
-}
-
