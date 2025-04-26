@@ -144,8 +144,15 @@
   </section>
 
   <!-- Classroom Points -->
-  <section id="classroom-points" class="content-section">
+ <section id="classroom-points" class="content-section">
   <h2>Classroom Points</h2>
+
+  <!-- 模式切换区 -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="switchToTeacherMode()" style="padding: 8px 16px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Teacher Mode</button>
+    <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Student Mode</button>
+  </div>
+
   <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
     <thead style="background-color: #eaf6fb;">
       <tr>
@@ -160,7 +167,7 @@
   </table>
 
   <!-- 添加学生表单 -->
-  <div style="margin-top: 30px; text-align: center;">
+  <div id="addStudentArea" style="margin-top: 30px; text-align: center; display: none;">
     <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
     <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
       Add Student
@@ -169,19 +176,20 @@
 </section>
 
 <script>
-// 学生数据初始化
+// 设定密码
+const PASSWORD = 'monash';
+
 const defaultStudents = [
   { name: "Alice Chen", points: 12 },
   { name: "Ben Lee", points: 10 },
   { name: "Chloe Zhang", points: 15 }
 ];
 
-// 尝试从localStorage加载数据
 let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
+let isTeacherMode = false; // 默认学生模式
 
-// 渲染表格
 function renderTable() {
-  students.sort((a, b) => b.points - a.points); // 按积分排序
+  students.sort((a, b) => b.points - a.points);
   const table = document.getElementById('pointsTable');
   table.innerHTML = '';
   students.forEach((student, index) => {
@@ -189,28 +197,30 @@ function renderTable() {
       <tr>
         <td style="padding: 10px; border: 1px solid #ddd;">${student.name}</td>
         <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
-        <td style="padding: 10px; border: 1px solid #ddd;">
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          isTeacherMode ? `
           <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1分</button>
           <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1分</button>
-        </td>
+          ` : ''
+        }</td>
       </tr>
     `;
   });
+
+  // 控制添加学生表单显示
+  document.getElementById('addStudentArea').style.display = isTeacherMode ? 'block' : 'none';
 }
 
-// 修改积分函数
 function changePoint(index, delta) {
   students[index].points += delta;
   saveData();
   renderTable();
 }
 
-// 保存到localStorage
 function saveData() {
   localStorage.setItem('students', JSON.stringify(students));
 }
 
-// 添加新学生
 function addStudent() {
   const nameInput = document.getElementById('newStudentName');
   const newName = nameInput.value.trim();
@@ -218,10 +228,27 @@ function addStudent() {
     students.push({ name: newName, points: 0 });
     saveData();
     renderTable();
-    nameInput.value = ''; // 清空输入框
+    nameInput.value = '';
   } else {
     alert('Please enter a student name.');
   }
+}
+
+// 切换到老师模式
+function switchToTeacherMode() {
+  const inputPassword = prompt('Enter teacher password:');
+  if (inputPassword === PASSWORD) {
+    isTeacherMode = true;
+    renderTable();
+  } else {
+    alert('Incorrect password!');
+  }
+}
+
+// 切换到学生模式
+function switchToStudentMode() {
+  isTeacherMode = false;
+  renderTable();
 }
 
 // 初始渲染
