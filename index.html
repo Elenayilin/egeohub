@@ -144,7 +144,7 @@
   </section>
 
   <!-- Classroom Points -->
- <section id="classroom-points" class="content-section">
+<section id="classroom-points" class="content-section">
   <h2>Classroom Points</h2>
 
   <!-- 模式切换区 -->
@@ -153,30 +153,37 @@
     <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Student Mode</button>
   </div>
 
-  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-    <thead style="background-color: #eaf6fb;">
-      <tr>
-        <th style="padding: 10px; border: 1px solid #ddd;">Student</th>
-        <th style="padding: 10px; border: 1px solid #ddd;">Points</th>
-        <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
-      </tr>
-    </thead>
-    <tbody id="pointsTable">
-      <!-- Student rows will be generated here -->
-    </tbody>
-  </table>
+  <!-- 表格容器 -->
+  <div id="tableContainer">
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead style="background-color: #eaf6fb;">
+        <tr>
+          <th style="padding: 10px; border: 1px solid #ddd;">Student</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Points</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="pointsTable">
+        <!-- Student rows will be generated here -->
+      </tbody>
+    </table>
 
-  <!-- 添加学生表单 -->
-  <div id="addStudentArea" style="margin-top: 30px; text-align: center; display: none;">
-    <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
-    <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
-      Add Student
-    </button>
+    <!-- 添加学生表单 -->
+    <div id="addStudentArea" style="margin-top: 30px; text-align: center;">
+      <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
+      <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Add Student
+      </button>
+    </div>
   </div>
+
+  <!-- 柱状图容器 -->
+  <canvas id="pointsChart" style="display: none; margin-top: 30px; max-width: 100%;"></canvas>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// 设定密码
+// 设置密码
 const PASSWORD = 'monash';
 
 const defaultStudents = [
@@ -186,8 +193,10 @@ const defaultStudents = [
 ];
 
 let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
-let isTeacherMode = false; // 默认学生模式
+let isTeacherMode = false;
+let chartInstance = null;
 
+// 渲染表格
 function renderTable() {
   students.sort((a, b) => b.points - a.points);
   const table = document.getElementById('pointsTable');
@@ -206,21 +215,21 @@ function renderTable() {
       </tr>
     `;
   });
-
-  // 控制添加学生表单显示
-  document.getElementById('addStudentArea').style.display = isTeacherMode ? 'block' : 'none';
 }
 
+// 修改积分
 function changePoint(index, delta) {
   students[index].points += delta;
   saveData();
   renderTable();
 }
 
+// 保存到localStorage
 function saveData() {
   localStorage.setItem('students', JSON.stringify(students));
 }
 
+// 添加新学生
 function addStudent() {
   const nameInput = document.getElementById('newStudentName');
   const newName = nameInput.value.trim();
@@ -239,6 +248,8 @@ function switchToTeacherMode() {
   const inputPassword = prompt('Enter teacher password:');
   if (inputPassword === PASSWORD) {
     isTeacherMode = true;
+    document.getElementById('tableContainer').style.display = 'block';
+    document.getElementById('pointsChart').style.display = 'none';
     renderTable();
   } else {
     alert('Incorrect password!');
@@ -248,7 +259,38 @@ function switchToTeacherMode() {
 // 切换到学生模式
 function switchToStudentMode() {
   isTeacherMode = false;
-  renderTable();
+  document.getElementById('tableContainer').style.display = 'none';
+  document.getElementById('pointsChart').style.display = 'block';
+  renderChart();
+}
+
+// 渲染柱状图
+function renderChart() {
+  const ctx = document.getElementById('pointsChart').getContext('2d');
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+  students.sort((a, b) => b.points - a.points);
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: students.map(s => s.name),
+      datasets: [{
+        label: 'Points',
+        data: students.map(s => s.points),
+        backgroundColor: '#007acc'
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      scales: {
+        x: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
 }
 
 // 初始渲染
