@@ -143,7 +143,7 @@
     </ul>
   </section>
 
-  <!-- Classroom Points -->
+ <!-- Classroom Points -->
 <section id="classroom-points" class="content-section">
   <h2>Classroom Points</h2>
 
@@ -168,9 +168,7 @@
 
     <div id="addStudentArea" style="margin-top: 30px; text-align: center;">
       <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
-      <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
-        Add Student
-      </button>
+      <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Student</button>
     </div>
   </div>
 
@@ -182,7 +180,7 @@
 
 <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
 
-<!-- Ask a Question Section -->
+<!-- Ask a Question -->
 <section id="ask" class="content-section">
   <h2>Ask a Question</h2>
   <div style="text-align: center; margin-top: 20px;">
@@ -199,7 +197,6 @@
     </form>
   </div>
 
-  <!-- 问题列表 -->
   <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
     <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
     <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
@@ -210,24 +207,30 @@
 <script>
 const PASSWORD = 'monash';
 const defaultStudents = [
-  { name: "Alice Chen", points: 12 },
-  { name: "Ben Lee", points: 10 },
-  { name: "Chloe Zhang", points: 15 }
+  { name: "Alice Chen", points: 52 },
+  { name: "Ben Lee", points: 40 },
+  { name: "Chloe Zhang", points: 35 }
 ];
 let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
 let isTeacherMode = false;
 let chartInstance = null;
 
-// 渲染表格
+// 渲染教师表格
 function renderTable() {
   students.sort((a, b) => b.points - a.points);
   const table = document.getElementById('pointsTable');
   table.innerHTML = '';
   students.forEach((student, index) => {
     const isGold = student.points >= 50;
+    let medal = '';
+    let color = isGold ? 'goldenrod' : '#333';
+    if (index === 0) { medal = '🥇 '; color = 'goldenrod'; }
+    else if (index === 1) { medal = '🥈 '; color = 'silver'; }
+    else if (index === 2) { medal = '🥉 '; color = 'peru'; }
+
     table.innerHTML += `
       <tr>
-        <td style="padding: 10px; border: 1px solid #ddd; ${isGold ? 'color: goldenrod; font-weight: bold;' : ''}">${student.name}</td>
+        <td style="padding: 10px; border: 1px solid #ddd; color: ${color}; font-weight: bold;">${medal}${student.name}</td>
         <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
         <td style="padding: 10px; border: 1px solid #ddd;">${
           isTeacherMode ? `
@@ -241,7 +244,7 @@ function renderTable() {
   });
 }
 
-// 高亮动画
+// 积分动画
 function highlightPoint(index) {
   const cell = document.getElementById(`points-${index}`);
   if (cell) {
@@ -260,7 +263,7 @@ function changePoint(index, delta) {
   renderTable();
 }
 
-// 保存数据
+// 保存
 function saveData() {
   localStorage.setItem('students', JSON.stringify(students));
 }
@@ -308,13 +311,20 @@ function switchToStudentMode() {
   renderChart();
 }
 
-// 渲染排行榜
+// 渲染学生排行榜
 function renderChart() {
   const ctx = document.getElementById('pointsChart').getContext('2d');
   if (chartInstance) {
     chartInstance.destroy();
   }
   students.sort((a, b) => b.points - a.points);
+
+  const colors = students.map((s, index) => {
+    if (index === 0) return 'gold';
+    if (index === 1) return 'silver';
+    if (index === 2) return 'peru';
+    return '#81c784';
+  });
 
   chartInstance = new Chart(ctx, {
     type: 'bar',
@@ -323,17 +333,18 @@ function renderChart() {
       datasets: [{
         label: 'Points',
         data: students.map(s => s.points),
-        backgroundColor: students.map(s => s.points >= 50 ? 'goldenrod' : '#81c784'),
+        backgroundColor: colors,
         borderRadius: 8,
-        barThickness: 20
+        categoryPercentage: 0.6,
+        barPercentage: 0.8
       }]
     },
     options: {
       indexAxis: 'y',
       responsive: true,
       scales: {
-        x: { beginAtZero: true },
-        y: { ticks: { color: '#333', font: { size: 14 } } }
+        x: { beginAtZero: true, grid: { display: false } },
+        y: { grid: { display: false }, ticks: { color: '#333', font: { size: 14 } } }
       },
       plugins: {
         legend: { display: false }
@@ -346,10 +357,10 @@ function renderChart() {
   });
 }
 
-// 默认加载学生模式
+// 页面加载默认学生模式
 window.onload = switchToStudentMode;
 
-// 提交问题保存
+// 提问保存
 document.getElementById('questionForm').addEventListener('submit', function(event) {
   event.preventDefault();
   const name = document.getElementById('name').value.trim();
@@ -364,7 +375,7 @@ document.getElementById('questionForm').addEventListener('submit', function(even
   }
 });
 
-// 展示保存的问题
+// 展示提问
 function displayQuestions() {
   const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
   const list = document.getElementById('questionsDisplay');
@@ -373,8 +384,6 @@ function displayQuestions() {
     list.innerHTML += `<li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>`;
   });
 }
-
-// 页面加载时展示提问
 displayQuestions();
 </script>
 
