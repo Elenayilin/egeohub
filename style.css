@@ -165,3 +165,28 @@ body {
   }
 }
 
+.hero {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/World_Map_Blank_without_borders.svg/1200px-World_Map_Blank_without_borders.svg.png') center/cover no-repeat;
+  background-color: #eaf6fb;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.section-icon {
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.card img {
+  height: 40px;
+  margin-top: 10px;
+}
+
+.card h3 {
+  margin-top: 10px;
+}
+
