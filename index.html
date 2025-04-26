@@ -145,10 +145,88 @@
 
   <!-- Classroom Points -->
   <section id="classroom-points" class="content-section">
-    <h2>Classroom Points</h2>
-    <p>Track your progress and earn points for participation and homework!</p>
-    <a href="YOUR_GOOGLE_SHEET_LINK_HERE" class="points-button" target="_blank">View Classroom Points Table</a>
-  </section>
+  <h2>Classroom Points</h2>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead style="background-color: #eaf6fb;">
+      <tr>
+        <th style="padding: 10px; border: 1px solid #ddd;">Student</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Points</th>
+        <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
+      </tr>
+    </thead>
+    <tbody id="pointsTable">
+      <!-- Student rows will be generated here -->
+    </tbody>
+  </table>
+
+  <!-- 添加学生表单 -->
+  <div style="margin-top: 30px; text-align: center;">
+    <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
+    <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Add Student
+    </button>
+  </div>
+</section>
+
+<script>
+// 学生数据初始化
+const defaultStudents = [
+  { name: "Alice Chen", points: 12 },
+  { name: "Ben Lee", points: 10 },
+  { name: "Chloe Zhang", points: 15 }
+];
+
+// 尝试从localStorage加载数据
+let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
+
+// 渲染表格
+function renderTable() {
+  students.sort((a, b) => b.points - a.points); // 按积分排序
+  const table = document.getElementById('pointsTable');
+  table.innerHTML = '';
+  students.forEach((student, index) => {
+    table.innerHTML += `
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;">${student.name}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">
+          <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1分</button>
+          <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1分</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// 修改积分函数
+function changePoint(index, delta) {
+  students[index].points += delta;
+  saveData();
+  renderTable();
+}
+
+// 保存到localStorage
+function saveData() {
+  localStorage.setItem('students', JSON.stringify(students));
+}
+
+// 添加新学生
+function addStudent() {
+  const nameInput = document.getElementById('newStudentName');
+  const newName = nameInput.value.trim();
+  if (newName) {
+    students.push({ name: newName, points: 0 });
+    saveData();
+    renderTable();
+    nameInput.value = ''; // 清空输入框
+  } else {
+    alert('Please enter a student name.');
+  }
+}
+
+// 初始渲染
+renderTable();
+</script>
 
   <!-- Ask a Question -->
   <section id="ask" class="content-section">
