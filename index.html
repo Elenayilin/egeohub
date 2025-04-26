@@ -176,9 +176,9 @@
     </div>
   </div>
 
-  <!-- 柱状图 -->
+  <!-- 排行榜柱状图 -->
   <div style="display: flex; justify-content: center; margin-top: 30px;">
-    <canvas id="pointsChart" style="display: none; max-width: 600px; width: 100%; height: 400px;"></canvas>
+    <canvas id="pointsChart" style="display: none; max-width: 700px; width: 100%; height: 400px;"></canvas>
   </div>
 </section>
 
@@ -221,7 +221,7 @@ function renderTable() {
 function changePoint(index, delta) {
   students[index].points += delta;
   saveData();
-  highlightPoint(index); // 高亮动画
+  highlightPoint(index);
   renderTable();
 }
 
@@ -234,11 +234,11 @@ function deleteStudent(index) {
   }
 }
 
-// 高亮积分变动
+// 高亮动画
 function highlightPoint(index) {
   const cell = document.getElementById(`points-${index}`);
   if (cell) {
-    cell.style.backgroundColor = '#ffeb3b'; // 黄色高亮
+    cell.style.backgroundColor = '#ffeb3b';
     setTimeout(() => {
       cell.style.backgroundColor = '';
     }, 500);
@@ -250,7 +250,7 @@ function saveData() {
   localStorage.setItem('students', JSON.stringify(students));
 }
 
-// 添加新学生
+// 添加学生
 function addStudent() {
   const nameInput = document.getElementById('newStudentName');
   const newName = nameInput.value.trim();
@@ -264,7 +264,7 @@ function addStudent() {
   }
 }
 
-// 老师模式
+// 切换教师模式
 function switchToTeacherMode() {
   const inputPassword = prompt('Enter teacher password:');
   if (inputPassword === PASSWORD) {
@@ -277,7 +277,7 @@ function switchToTeacherMode() {
   }
 }
 
-// 学生模式
+// 切换学生模式
 function switchToStudentMode() {
   isTeacherMode = false;
   document.getElementById('tableContainer').style.display = 'none';
@@ -285,7 +285,7 @@ function switchToStudentMode() {
   renderChart();
 }
 
-// 渲染柱状图
+// 渲染排行榜
 function renderChart() {
   const ctx = document.getElementById('pointsChart').getContext('2d');
   if (chartInstance) {
@@ -294,8 +294,8 @@ function renderChart() {
   students.sort((a, b) => b.points - a.points);
 
   const gradient = ctx.createLinearGradient(0, 0, 600, 0);
-  gradient.addColorStop(0, '#81c784'); // 浅绿色
-  gradient.addColorStop(1, '#388e3c'); // 深绿色
+  gradient.addColorStop(0, '#81c784');
+  gradient.addColorStop(1, '#388e3c');
 
   chartInstance = new Chart(ctx, {
     type: 'bar',
@@ -304,15 +304,46 @@ function renderChart() {
       datasets: [{
         label: 'Points',
         data: students.map(s => s.points),
-        backgroundColor: gradient
+        backgroundColor: gradient,
+        borderRadius: 8,
+        barThickness: 20
       }]
     },
     options: {
       indexAxis: 'y',
       responsive: true,
+      layout: {
+        padding: {
+          top: 10,
+          bottom: 10
+        }
+      },
       scales: {
         x: {
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            color: '#333'
+          }
+        },
+        y: {
+          ticks: {
+            color: '#333',
+            font: {
+              size: 14
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          enabled: true
+        },
+        datalabels: {
+          anchor: 'end',
+          align: 'right'
         }
       },
       animation: {
@@ -323,7 +354,7 @@ function renderChart() {
   });
 }
 
-// 页面加载默认学生模式
+// 页面默认学生模式
 window.onload = switchToStudentMode;
 </script>
 
