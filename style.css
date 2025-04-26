@@ -62,12 +62,6 @@ body {
   background: #ffffff;
   margin-bottom: 20px;
 }
-.grid-section h2 {
-  font-size: 28px;
-  margin: 20px 0 10px;
-  text-align: center;
-  position: relative;
-}
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
