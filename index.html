@@ -360,31 +360,78 @@ function renderChart() {
 // 页面加载默认学生模式
 window.onload = switchToStudentMode;
 
-// 提问保存
-document.getElementById('questionForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const question = document.getElementById('question').value.trim();
-  if (question) {
-    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    allQuestions.push({ name: name, question: question });
-    localStorage.setItem('questions', JSON.stringify(allQuestions));
-    alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
-    this.reset();
-    displayQuestions();
-  }
-});
+<!-- Ask a Question (Upgraded) -->
+<section id="ask" class="content-section">
+  <h2>Ask a Question</h2>
+  <div style="text-align: center; margin-top: 20px;">
+    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="name">Name (optional):</label>
+        <input type="text" id="name" name="name" placeholder="You can leave this blank">
+      </div>
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
+        <textarea id="question" name="question" rows="4" required></textarea>
+      </div>
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
+      </div>
+      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
+    </form>
+  </div>
 
-// 展示提问
-function displayQuestions() {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const list = document.getElementById('questionsDisplay');
-  list.innerHTML = '';
-  allQuestions.forEach(q => {
-    list.innerHTML += `<li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>`;
+  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
+    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
+  </div>
+</section>
+
+<script>
+// 提问保存功能
+  document.getElementById('questionForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const question = document.getElementById('question').value.trim();
+    const isPublic = document.getElementById('isPublic').checked;
+
+    if (question) {
+      const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+      allQuestions.push({ name: name, question: question, isPublic: isPublic });
+      localStorage.setItem('questions', JSON.stringify(allQuestions));
+      alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
+      this.reset();
+      displayQuestions();
+    }
   });
-}
-displayQuestions();
+
+// 展示提问列表（含私密逻辑和删除功能）
+  function displayQuestions() {
+    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+    const list = document.getElementById('questionsDisplay');
+    list.innerHTML = '';
+    allQuestions.forEach((q, index) => {
+      if (q.isPublic || isTeacherMode) {
+        list.innerHTML += `
+          <li style="padding: 8px; border-bottom: 1px solid #ddd;">
+            <strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}
+            ${isTeacherMode ? `<button onclick="deleteQuestion(${index})" style="float:right; background-color:#e60000; padding:4px 8px; border:none; color:white; border-radius:4px; font-size:12px;">Delete</button>` : ''}
+            ${!q.isPublic ? `<span style="color:gray; font-size:12px;"> (Private)</span>` : ''}
+          </li>`;
+      }
+    });
+  }
+
+// 删除问题功能（仅教师）
+  function deleteQuestion(index) {
+    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+    if (confirm("Are you sure you want to delete this question?")) {
+      allQuestions.splice(index, 1);
+      localStorage.setItem('questions', JSON.stringify(allQuestions));
+      displayQuestions();
+    }
+  }
+
+  displayQuestions();
 </script>
 
   <!-- Contact -->
