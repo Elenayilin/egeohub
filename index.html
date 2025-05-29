@@ -360,32 +360,26 @@ function renderChart() {
 // 页面加载默认学生模式
 window.onload = switchToStudentMode;
 
-// 提问保存
-document.getElementById('questionForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const question = document.getElementById('question').value.trim();
-  if (question) {
-    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    allQuestions.push({ name: name, question: question });
-    localStorage.setItem('questions', JSON.stringify(allQuestions));
-    alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
-    this.reset();
-    displayQuestions();
-  }
-});
+<section id="ask" class="content-section">
+  <h2>Ask a Question</h2>
+  <p>Got a question? Ask about anything you don't understand. You may leave your name blank for anonymous submission.</p>
 
-// 展示提问
-function displayQuestions() {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const list = document.getElementById('questionsDisplay');
-  list.innerHTML = '';
-  allQuestions.forEach(q => {
-    list.innerHTML += `<li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>`;
-  });
-}
-displayQuestions();
-</script>
+  <form id="questionForm">
+    <input type="text" id="studentName" placeholder="Your name (optional)">
+    <textarea id="studentQuestion" placeholder="Enter your question here..." required></textarea>
+    <button type="submit">Submit Question</button>
+  </form>
+
+  <div id="adminAccess">
+    <input type="password" id="adminPassword" placeholder="Enter teacher password">
+    <button onclick="showQuestions()">View Submissions</button>
+  </div>
+
+  <div id="questionList" style="display:none;">
+    <h3>Submitted Questions</h3>
+    <ul id="storedQuestions"></ul>
+  </div>
+</section>
 
   <!-- Contact -->
   <section id="contact" class="content-section">
@@ -402,4 +396,58 @@ displayQuestions();
   </script>
 
 </body>
+  <script>
+  const form = document.getElementById('questionForm');
+  const nameInput = document.getElementById('studentName');
+  const questionInput = document.getElementById('studentQuestion');
+  const storedQuestionsList = document.getElementById('storedQuestions');
+  const questionListDiv = document.getElementById('questionList');
+
+  let questions = JSON.parse(localStorage.getItem('questions')) || [];
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = nameInput.value.trim() || "Anonymous";
+    const question = questionInput.value.trim();
+
+    if (!question) return;
+
+    questions.push({ name, question });
+    localStorage.setItem('questions', JSON.stringify(questions));
+
+    nameInput.value = '';
+    questionInput.value = '';
+    alert('Your question has been submitted!');
+  });
+
+  function showQuestions() {
+    const pwd = document.getElementById('adminPassword').value;
+    if (pwd !== 'monash') {
+      alert('Incorrect password');
+      return;
+    }
+
+    questionListDiv.style.display = 'block';
+    renderQuestions();
+  }
+
+  function renderQuestions() {
+    storedQuestionsList.innerHTML = '';
+    questions.forEach((q, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>${q.name}:</strong> ${q.question}
+                      <button onclick="deleteQuestion(${index})">Delete</button>`;
+      storedQuestionsList.appendChild(li);
+    });
+  }
+
+  function deleteQuestion(index) {
+    if (confirm('Are you sure you want to delete this question?')) {
+      questions.splice(index, 1);
+      localStorage.setItem('questions', JSON.stringify(questions));
+      renderQuestions();
+    }
+  }
+</script>
+
 </html>
