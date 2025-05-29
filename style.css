@@ -267,3 +267,46 @@ input, textarea {
     width: 100%;
   }
 }
+/* ---------- Ask a Question: Enhanced Private Style ---------- */
+#ask ul li.private {
+  background-color: #fff4f4;
+  border-left: 4px solid #e74c3c;
+}
+
+#ask ul li span.private-tag {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: help;
+}
+
+#ask ul li span.private-tag::before {
+  content: '🔒';
+  margin-right: 4px;
+}
+
+/* ---------- Community Section ---------- */
+#community textarea {
+  resize: vertical;
+}
+
+#community ul li {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#community button {
+  background: #28a745;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+#community button:hover {
+  background: #218838;
+}
