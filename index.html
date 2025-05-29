@@ -180,29 +180,6 @@
 
 <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
 
-<!-- Ask a Question -->
-<section id="ask" class="content-section">
-  <h2>Ask a Question</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name" placeholder="You can leave this blank">
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-        <textarea id="question" name="question" rows="4" required></textarea>
-      </div>
-      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-    </form>
-  </div>
-
-  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
-    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
-  </div>
-</section>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const PASSWORD = 'monash';
@@ -381,32 +358,6 @@ window.onload = switchToStudentMode;
   </div>
 
   <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
-    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
-  </div>
-</section>
-
-  <!-- Ask a Question (Upgraded) -->
-<section id="ask" class="content-section">
-  <h2>Ask a Question</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name" placeholder="You can leave this blank">
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-        <textarea id="question" name="question" rows="4" required></textarea>
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
-      </div>
-      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-    </form>
-  </div>
-
-  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
     <div id="questionFilter" style="display:none; text-align:center; margin-bottom: 15px;">
       <label><input type="radio" name="filter" value="all" checked> Show All</label>
       <label style="margin-left: 15px;"><input type="radio" name="filter" value="public"> Public Only</label>
@@ -547,37 +498,6 @@ document.addEventListener('change', function(event) {
       document.getElementById('thankYouMessage').style.display = 'block';
     });
   </script>
-
-  <!-- Ask a Question -->
-<section id="ask" class="content-section">
-  <h2>Ask a Question</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name" placeholder="You can leave this blank">
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-        <textarea id="question" name="question" rows="4" required></textarea>
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
-      </div>
-      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-    </form>
-  </div>
-
-  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <div id="questionFilter" style="display:none; text-align:center; margin-bottom: 15px;">
-      <label><input type="radio" name="filter" value="all" checked> Show All</label>
-      <label style="margin-left: 15px;"><input type="radio" name="filter" value="public"> Public Only</label>
-      <label style="margin-left: 15px;"><input type="radio" name="filter" value="private"> Private Only</label>
-    </div>
-    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
-    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
-  </div>
-</section>
 
 </body>
 </html>
