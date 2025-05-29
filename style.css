@@ -1,326 +1,176 @@
-/* Reset */
-* {
+/* Main Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa 0%, #ffffff 100%);
+  background-color: #f9f9f9;
   color: #333;
-  line-height: 1.6;
 }
 
-<script>
-particlesJS('particles-js', {
-  particles: {
-    number: {
-      value: 50,
-      density: { enable: true, value_area: 800 }
-    },
-    color: { value: "#007acc" },
-    shape: {
-      type: "circle",
-      stroke: { width: 0, color: "#000000" }
-    },
-    opacity: {
-      value: 0.5,
-      random: true
-    },
-    size: {
-      value: 3,
-      random: true
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#007acc",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: { enable: true, mode: "repulse" },
-      onclick: { enable: true, mode: "push" }
-    },
-    modes: {
-      repulse: { distance: 100 },
-      push: { particles_nb: 4 }
-    }
-  },
-  retina_detect: true
-});
-</script>
-
-/* Header */
 .site-header {
+  background-color: #007acc;
+  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
-  padding: 10px 20px;
-  border-bottom: 1px solid #ddd;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  color: white;
 }
 
-.logo {
-  font-size: 26px;
-  font-weight: 700;
+.site-header .logo {
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .main-nav ul {
-  list-style: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   gap: 20px;
 }
 
 .main-nav a {
+  color: white;
   text-decoration: none;
-  color: #333;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
 .main-nav a:hover {
-  color: #007acc;
+  text-decoration: underline;
 }
 
-/* Hero Section */
 .hero {
-  background: url('your-hero-image.jpg') center/cover no-repeat;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/World_Map_Blank_without_borders.svg/1200px-World_Map_Blank_without_borders.svg.png') center/cover no-repeat;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.hero-content {
-  background: rgba(255,255,255,0.9);
-  padding: 30px;
-  border-radius: 12px;
+  flex-direction: column;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: #003f5c;
+  padding: 0 20px;
 }
 
-.hero-content h1 {
+.hero h1 {
   font-size: 36px;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
-.hero-content p {
+.hero p {
   font-size: 18px;
 }
 
-/* General Section Layout */
-.content-section, .grid-section {
-  background: #ffffff;
-  margin: 40px 20px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+.grid-section {
+  padding: 40px 30px;
+  background-color: #eaf6fb;
 }
 
-.content-section h2, .grid-section h2 {
+.grid-section h2 {
   font-size: 28px;
-  text-align: center;
   margin-bottom: 20px;
 }
 
-/* Practice Centre and Resources */
-.content-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 10px;
-}
-
-.content-section li {
-  margin-bottom: 16px;
-  font-size: 20px;
-  color: #333;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
-
-.content-section li::before {
-  content: "🌎";
-  margin-right: 12px;
-  font-size: 20px;
-}
-
-.content-section a {
-  color: #0056b3;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.content-section a:hover {
-  color: #003d80;
-  text-decoration: none;
-}
-
-/* Grid Sections (Y7-10 and VCE) */
 .grid-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  padding: 20px 0;
 }
 
 .card {
-  background: #f9f9f9;
-  border-radius: 12px;
+  background-color: white;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  transition: transform 0.3s;
-  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-}
-
-.card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+  transform: scale(1.02);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .card h3 {
   padding: 15px;
-  font-size: 18px;
+  margin: 0;
 }
 
-/* Table Styles (for Classroom Points) */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+.content-section {
+  padding: 40px 30px;
+}
+
+.content-section h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.content-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.content-section li {
+  margin-bottom: 10px;
+}
+
+.content-section a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+.content-section a:hover {
+  text-decoration: underline;
+}
+
+/* Ask a Question Section */
+#ask form {
+  background-color: white;
+  padding: 20px;
   border-radius: 8px;
-  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
-}
-
-thead {
-  background-color: #eaf6fb;
-}
-
-/* Buttons */
-button {
-  padding: 10px 20px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-}
-
-button:hover {
-  background: linear-gradient(to right, #0072ff, #00c6ff);
-  transform: scale(1.05);
-}
-
-/* Inputs */
-input, textarea {
-  padding: 10px;
+#ask input[type="text"],
+#ask textarea,
+#ask input[type="password"] {
   width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-top: 8px;
-  font-family: 'Poppins', sans-serif;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero {
-    height: 200px;
-  }
-  .hero-content h1 {
-    font-size: 26px;
-  }
-  button {
-    width: 100%;
-  }
-}
-#questionForm {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#questionForm input,
-#questionForm textarea {
   padding: 10px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-#questionForm button {
-  padding: 10px;
+#ask button {
+  padding: 10px 20px;
   background-color: #007acc;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
 }
 
-#questionForm button:hover {
-  background-color: #005999;
+#ask button:hover {
+  background-color: #005c99;
 }
 
-#adminAccess {
-  margin-top: 30px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+#ask ul {
+  padding-left: 20px;
 }
 
-#adminAccess input {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #aaa;
-}
-
-#questionList ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 20px;
-}
-
-#questionList li {
-  background: #f4f4f4;
-  padding: 12px;
-  border-radius: 8px;
+#ask li {
+  background-color: #f4f4f4;
   margin-bottom: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Contact */
+#contact a {
+  color: #007acc;
+  text-decoration: none;
+}
+
+#contact a:hover {
+  text-decoration: underline;
 }
