@@ -267,3 +267,60 @@ input, textarea {
     width: 100%;
   }
 }
+#questionForm {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#questionForm input,
+#questionForm textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+#questionForm button {
+  padding: 10px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#questionForm button:hover {
+  background-color: #005999;
+}
+
+#adminAccess {
+  margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#adminAccess input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+}
+
+#questionList ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 20px;
+}
+
+#questionList li {
+  background: #f4f4f4;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
