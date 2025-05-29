@@ -182,6 +182,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+  
 const PASSWORD = 'monash';
 const defaultStudents = [
   { name: "Alice Chen", points: 52 },
@@ -384,7 +385,6 @@ window.onload = switchToStudentMode;
   <ul id="communityPosts" style="margin-top:30px; max-width:700px; margin-left:auto; margin-right:auto; list-style:none; padding-left:0;"></ul>
 </section>
 
-<script>
 document.getElementById('questionForm').addEventListener('submit', function(event) {
   event.preventDefault();
   const name = document.getElementById('name').value.trim();
