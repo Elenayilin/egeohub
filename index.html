@@ -2,501 +2,228 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>eGeoHub | Geography Resources for Victorian Secondary Students</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eGeoHub - Learn Geography Easily</title>
   <style>
-    .hero {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/World_Map_Blank_without_borders.svg/1200px-World_Map_Blank_without_borders.svg.png') center/cover no-repeat;
-      background-color: #eaf6fb;
-      height: 300px;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
       display: flex;
-      align-items: center;
       justify-content: center;
-      margin-bottom: 40px;
+      background-color: #005f99;
     }
-    .section-icon {
-      height: 30px;
-      vertical-align: middle;
-      margin-right: 10px;
+
+    nav a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      display: block;
     }
-    .card img {
+
+    nav a:hover {
+      background-color: #004d80;
+    }
+
+    .content-section {
+      display: none;
+      padding: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .button-container {
+      text-align: center;
+      margin: 20px;
+    }
+
+    .toggle-button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .teacher {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    .student {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .toggle-button.active {
+      box-shadow: 0 0 0 2px white inset;
+    }
+
+    textarea, input {
       width: 100%;
-      height: 200px;
-      object-fit: cover;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    #questionList {
+      margin-top: 20px;
+    }
+
+    .question-card {
+      background-color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
     }
   </style>
 </head>
+
 <body>
+  <header>
+    <h1>Welcome to eGeoHub</h1>
+    <p>Your Gateway to Engaging Geography Learning</p>
+  </header>
 
-<header class="site-header">
-  <div class="logo">eGeoHub</div>
-  <nav class="main-nav">
-    <ul>
-      <li><a href="#yrs7-8">Years 7–8</a></li>
-      <li><a href="#yrs9-10">Years 9–10</a></li>
-      <li><a href="#vce">VCE Geography</a></li>
-      <li><a href="#practice">Practice Centre</a></li>
-      <li><a href="#resources">Resources</a></li>
-      <li><a href="#classroom-points">Classroom Points</a></li>
-      <li><a href="#ask">Ask a Question</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <nav>
+    <a href="#" onclick="showSection('home')">Home</a>
+    <a href="#" onclick="showSection('lessons')">Lessons</a>
+    <a href="#" onclick="showSection('resources')">Resources</a>
+    <a href="#" onclick="showSection('ask')">Ask a Question</a>
   </nav>
-</header>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>Geography Resources for Victorian Secondary Students</h1>
-    <p>Welcome to eGeoHub – your go-to site for Geography learning materials and practice.</p>
+  <div class="button-container">
+    <button class="toggle-button student" onclick="switchToStudentMode()">I'm a Student</button>
+    <button class="toggle-button teacher" onclick="switchToTeacherMode()">I'm a Teacher</button>
   </div>
-</section>
 
-<section id="yrs7-8" class="grid-section">
-  <h2><img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="Earth Icon" class="section-icon">Years 7–8 Geography</h2>
-  <div class="grid-cards">
-    <div class="card blue-card">
-      <img src="water.jpg" alt="Water in the World">
-      <h3>Water in the World</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="city.jpg" alt="Place and Liveability">
-      <h3>Place and Liveability</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="migration.jpg" alt="Changing Nations">
-      <h3>Changing Nations</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="mountain.jpg" alt="Landscapes and Landforms">
-      <h3>Landscapes and Landforms</h3>
-    </div>
-  </div>
-</section>
-
-<section id="yrs9-10" class="grid-section">
-  <h2><img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="City Icon" class="section-icon">Years 9–10 Geography</h2>
-  <div class="grid-cards">
-    <div class="card blue-card">
-      <img src="wheat.jpg" alt="Biomes and Food Security">
-      <h3>Biomes and Food Security</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="network.jpg" alt="Geographies of Interconnections">
-      <h3>Geographies of Interconnections</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="environment.jpg" alt="Environmental Change and Management">
-      <h3>Environmental Change and Management</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="wellbeing.jpg" alt="Human Wellbeing">
-      <h3>Human Wellbeing</h3>
-    </div>
-  </div>
-</section>
-
-<section id="vce" class="grid-section">
-  <h2><img src="https://cdn-icons-png.flaticon.com/512/1040/1040230.png" alt="School Icon" class="section-icon">VCE Geography (Units 1–4)</h2>
-  <div class="grid-cards">
-    <div class="card blue-card">
-      <img src="volcano.jpg" alt="Hazards and Disasters">
-      <h3>Unit 1: Hazards and Disasters</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="tourism.jpg" alt="Tourism: Issues and Challenges">
-      <h3>Unit 2: Tourism: Issues and Challenges</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="landchange.jpg" alt="Changing the Land">
-      <h3>Unit 3: Changing the Land</h3>
-    </div>
-    <div class="card blue-card">
-      <img src="population.jpg" alt="Human Population Trends and Issues">
-      <h3>Unit 4: Human Population Trends and Issues</h3>
-    </div>
-  </div>
-</section>
-
-  <!-- Practice Centre -->
-  <section id="practice" class="content-section">
-    <h2>Practice Centre</h2>
-    <ul>
-      <li><a href="#">Year 7 Worksheet: Landscapes Investigation</a></li>
-      <li><a href="#">Year 8 Worksheet: Urbanisation in Australia</a></li>
-      <li><a href="#">Year 9 Worksheet: Biomes and Interconnections</a></li>
-      <li><a href="#">Year 10 Worksheet: Environmental Management</a></li>
-      <li><a href="#">VCE Unit 1 Worksheet: Hazard Response Analysis</a></li>
-      <li><a href="#">VCE Unit 2 Worksheet: Tourism Impact Study</a></li>
-    </ul>
+  <section id="home" class="content-section active">
+    <h2>Welcome!</h2>
+    <p>This site is designed to help students and teachers explore the world of geography through interactive lessons, helpful resources, and engaging questions.</p>
   </section>
 
-  <!-- Resources -->
+  <section id="lessons" class="content-section">
+    <h2>Lesson Plans</h2>
+    <p>Coming soon: Explore downloadable and interactive lesson plans tailored for high school geography topics.</p>
+  </section>
+
   <section id="resources" class="content-section">
-    <h2>Resources</h2>
+    <h2>Useful Resources</h2>
     <ul>
-      <li><a href="https://www.ga.gov.au/" target="_blank">Geoscience Australia</a></li>
-      <li><a href="http://www.bom.gov.au/" target="_blank">Bureau of Meteorology (BOM)</a></li>
-      <li><a href="https://www.abs.gov.au/" target="_blank">Australian Bureau of Statistics (ABS)</a></li>
-      <li><a href="https://globalforestwatch.org/" target="_blank">Global Forest Watch</a></li>
+      <li><a href="#">Maps and Atlases</a></li>
+      <li><a href="#">Geography Glossary</a></li>
+      <li><a href="#">Interactive Quizzes</a></li>
     </ul>
   </section>
 
- <!-- Classroom Points -->
-<section id="classroom-points" class="content-section">
-  <h2>Classroom Points</h2>
-
-  <!-- 模式切换按钮 -->
-  <div style="text-align: center; margin-bottom: 20px;">
-    <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Student Mode</button>
-    <button onclick="switchToTeacherMode()" style="padding: 8px 16px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">Teacher Mode</button>
-  </div>
-
-  <!-- 表格 -->
-  <div id="tableContainer">
-    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-      <thead style="background-color: #eaf6fb;">
-        <tr>
-          <th style="padding: 10px; border: 1px solid #ddd;">Student</th>
-          <th style="padding: 10px; border: 1px solid #ddd;">Points</th>
-          <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
-        </tr>
-      </thead>
-      <tbody id="pointsTable"></tbody>
-    </table>
-
-    <div id="addStudentArea" style="margin-top: 30px; text-align: center;">
-      <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
-      <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Student</button>
+  <!-- Ask a Question -->
+  <section id="ask" class="content-section">
+    <h2>Ask a Question</h2>
+    <div style="text-align: center; margin-top: 20px;">
+      <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
+        <div style="text-align: left; margin-bottom: 10px;">
+          <label for="name">Name (optional):</label>
+          <input type="text" id="name" name="name" placeholder="You can leave this blank">
+        </div>
+        <div style="text-align: left; margin-bottom: 10px;">
+          <label for="question">Your Question (feel free to ask anything you don't understand):</label>
+          <textarea id="question" name="question" rows="4" required></textarea>
+        </div>
+        <div style="text-align: left; margin-bottom: 10px;">
+          <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
+        </div>
+        <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
+      </form>
     </div>
-  </div>
-
-  <!-- 排行榜柱状图 -->
-  <div style="display: flex; justify-content: center; margin-top: 30px;">
-    <canvas id="pointsChart" style="display: none; max-width: 700px; width: 100%; height: 200px;"></canvas>
-  </div>
-</section>
-
-<hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  
-const PASSWORD = 'monash';
-const defaultStudents = [
-  { name: "Alice Chen", points: 52 },
-  { name: "Ben Lee", points: 40 },
-  { name: "Chloe Zhang", points: 35 }
-];
-let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
-let isTeacherMode = false;
-let chartInstance = null;
-
-// 渲染教师表格
-function renderTable() {
-  students.sort((a, b) => b.points - a.points);
-  const table = document.getElementById('pointsTable');
-  table.innerHTML = '';
-  students.forEach((student, index) => {
-    const isGold = student.points >= 50;
-    let medal = '';
-    let color = isGold ? 'goldenrod' : '#333';
-    if (index === 0) { medal = '🥇 '; color = 'goldenrod'; }
-    else if (index === 1) { medal = '🥈 '; color = 'silver'; }
-    else if (index === 2) { medal = '🥉 '; color = 'peru'; }
-
-    table.innerHTML += `
-      <tr>
-        <td style="padding: 10px; border: 1px solid #ddd; color: ${color}; font-weight: bold;">${medal}${student.name}</td>
-        <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
-        <td style="padding: 10px; border: 1px solid #ddd;">${
-          isTeacherMode ? `
-          <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1</button>
-          <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; margin-right: 5px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1</button>
-          <button onclick="deleteStudent(${index})" style="padding: 6px 10px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
-          ` : ''
-        }</td>
-      </tr>
-    `;
-  });
-}
-
-// 积分动画
-function highlightPoint(index) {
-  const cell = document.getElementById(`points-${index}`);
-  if (cell) {
-    cell.style.backgroundColor = '#ffeb3b';
-    setTimeout(() => {
-      cell.style.backgroundColor = '';
-    }, 500);
-  }
-}
-
-// 修改积分
-function changePoint(index, delta) {
-  students[index].points += delta;
-  saveData();
-  highlightPoint(index);
-  renderTable();
-}
-
-// 保存
-function saveData() {
-  localStorage.setItem('students', JSON.stringify(students));
-}
-
-// 删除学生
-function deleteStudent(index) {
-  if (confirm("Are you sure you want to remove this student?")) {
-    students.splice(index, 1);
-    saveData();
-    renderTable();
-  }
-}
-
-// 添加学生
-function addStudent() {
-  const nameInput = document.getElementById('newStudentName');
-  const newName = nameInput.value.trim();
-  if (newName) {
-    students.push({ name: newName, points: 0 });
-    saveData();
-    renderTable();
-    nameInput.value = '';
-  } else {
-    alert('Please enter a student name.');
-  }
-}
-
-// 模式切换
-function switchToTeacherMode() {
-  const inputPassword = prompt('Enter teacher password:');
-  if (inputPassword === PASSWORD) {
-    isTeacherMode = true;
-    document.getElementById('tableContainer').style.display = 'block';
-    document.getElementById('pointsChart').style.display = 'none';
-    renderTable();
-  } else {
-    alert('Incorrect password!');
-  }
-}
-
-function switchToStudentMode() {
-  isTeacherMode = false;
-  document.getElementById('tableContainer').style.display = 'none';
-  document.getElementById('pointsChart').style.display = 'block';
-  renderChart();
-}
-
-// 渲染学生排行榜
-function renderChart() {
-  const ctx = document.getElementById('pointsChart').getContext('2d');
-  if (chartInstance) {
-    chartInstance.destroy();
-  }
-  students.sort((a, b) => b.points - a.points);
-
-  const colors = students.map((s, index) => {
-    if (index === 0) return 'gold';
-    if (index === 1) return 'silver';
-    if (index === 2) return 'peru';
-    return '#81c784';
-  });
-
-  chartInstance = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: students.map(s => s.name),
-      datasets: [{
-        label: 'Points',
-        data: students.map(s => s.points),
-        backgroundColor: colors,
-        borderRadius: 8,
-        categoryPercentage: 0.6,
-        barPercentage: 0.8
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      scales: {
-        x: { beginAtZero: true, grid: { display: false } },
-        y: { grid: { display: false }, ticks: { color: '#333', font: { size: 14 } } }
-      },
-      plugins: {
-        legend: { display: false }
-      },
-      animation: {
-        duration: 800,
-        easing: 'easeOutBounce'
-      }
-    }
-  });
-}
-
-// 页面加载默认学生模式
-window.onload = switchToStudentMode;
-
-<!-- Ask a Question (Upgraded) -->
-<section id="ask" class="content-section">
-  <h2>Ask a Question</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name" placeholder="You can leave this blank">
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-        <textarea id="question" name="question" rows="4" required></textarea>
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
-      </div>
-      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-    </form>
-  </div>
-
-  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <div id="questionFilter" style="display:none; text-align:center; margin-bottom: 15px;">
-      <label><input type="radio" name="filter" value="all" checked> Show All</label>
-      <label style="margin-left: 15px;"><input type="radio" name="filter" value="public"> Public Only</label>
-      <label style="margin-left: 15px;"><input type="radio" name="filter" value="private"> Private Only</label>
-    </div>
-    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
-    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
-  </div>
-</section>
-
-<!-- Student Community Section -->
-<section id="community" class="content-section">
-  <h2>Student Community</h2>
-  <form id="communityForm" style="max-width:600px; margin:0 auto; text-align:left;">
-    <label for="username">Name (optional):</label>
-    <input type="text" id="username" placeholder="Anonymous">
-
-    <label for="message">Share your thoughts:</label>
-    <textarea id="message" rows="4" required></textarea>
-
-    <button type="submit">Post</button>
-  </form>
-
-  <ul id="communityPosts" style="margin-top:30px; max-width:700px; margin-left:auto; margin-right:auto; list-style:none; padding-left:0;"></ul>
-</section>
-
-document.getElementById('questionForm').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const question = document.getElementById('question').value.trim();
-  const isPublic = document.getElementById('isPublic').checked;
-
-  if (question) {
-    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    allQuestions.push({ name, question, isPublic });
-    localStorage.setItem('questions', JSON.stringify(allQuestions));
-    alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
-    this.reset();
-    displayQuestions();
-  }
-});
-
-function displayQuestions() {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const list = document.getElementById('questionsDisplay');
-  const selectedFilter = document.querySelector('input[name="filter"]:checked')?.value || 'all';
-
-  list.innerHTML = '';
-  allQuestions.forEach((q, index) => {
-    const isPrivate = !q.isPublic;
-
-    if (
-      (selectedFilter === 'all') ||
-      (selectedFilter === 'public' && !isPrivate) ||
-      (selectedFilter === 'private' && isPrivate)
-    ) {
-      if (q.isPublic || isTeacherMode) {
-        list.innerHTML += `
-          <li class="${isPrivate ? 'private' : ''}" style="padding: 8px; border-bottom: 1px solid #ddd;">
-            <strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}
-            ${isTeacherMode ? `<button onclick="deleteQuestion(${index})" style="float:right; background-color:#e60000; padding:4px 8px; border:none; color:white; border-radius:4px; font-size:12px;">Delete</button>` : ''}
-            ${isPrivate ? `<span class="private-tag" title="Only visible to teacher"> (Private)</span>` : ''}
-          </li>`;
-      }
-    }
-  });
-}
-
-function deleteQuestion(index) {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  if (confirm("Are you sure you want to delete this question?")) {
-    allQuestions.splice(index, 1);
-    localStorage.setItem('questions', JSON.stringify(allQuestions));
-    displayQuestions();
-  }
-}
-
-document.addEventListener('change', function(event) {
-  if (event.target.name === 'filter') {
-    displayQuestions();
-  }
-});
-
-// Student Community
-  document.getElementById('communityForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const name = document.getElementById('username').value.trim() || 'Anonymous';
-    const msg = document.getElementById('message').value.trim();
-    if (!msg) return;
-
-    const posts = JSON.parse(localStorage.getItem('communityPosts')) || [];
-    posts.unshift({ name, msg, likes: 0 });
-    localStorage.setItem('communityPosts', JSON.stringify(posts));
-    this.reset();
-    renderCommunity();
-  });
-
-  function renderCommunity() {
-    const posts = JSON.parse(localStorage.getItem('communityPosts')) || [];
-    const list = document.getElementById('communityPosts');
-    list.innerHTML = '';
-
-    posts.forEach((post, index) => {
-      list.innerHTML += `
-        <li style="background:#f9f9f9; padding:15px; margin-bottom:10px; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,0.05);">
-          <strong>${post.name}:</strong> ${post.msg}
-          <div style="margin-top:8px;">
-            <button onclick="likePost(${index})" style="padding:4px 10px; font-size:14px; border:none; background:#007acc; color:white; border-radius:4px; cursor:pointer;">
-              👍 Like (${post.likes})
-            </button>
-          </div>
-        </li>
-      `;
-    });
-  }
-
-  function likePost(index) {
-    const posts = JSON.parse(localStorage.getItem('communityPosts')) || [];
-    posts[index].likes += 1;
-    localStorage.setItem('communityPosts', JSON.stringify(posts));
-    renderCommunity();
-  }
-
-  renderCommunity();
-</script>
-
-  <!-- Contact -->
-  <section id="contact" class="content-section">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:yhan0104@student.monash.edu">yhan0104@student.monash.edu</a></p>
+    <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;"></div>
   </section>
 
   <script>
-    document.getElementById('localAskForm').addEventListener('submit', function(event) {
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function switchToStudentMode() {
+      document.body.classList.remove('teacher-mode');
+      document.body.classList.add('student-mode');
+      document.querySelector('.student').classList.add('active');
+      document.querySelector('.teacher').classList.remove('active');
+    }
+
+    function switchToTeacherMode() {
+      document.body.classList.remove('student-mode');
+      document.body.classList.add('teacher-mode');
+      document.querySelector('.teacher').classList.add('active');
+      document.querySelector('.student').classList.remove('active');
+    }
+
+    // Handle question form
+    const form = document.getElementById('questionForm');
+    const questionList = document.getElementById('questionList');
+
+    form.addEventListener('submit', function(event) {
       event.preventDefault();
-      document.getElementById('localAskForm').style.display = 'none';
-      document.getElementById('thankYouMessage').style.display = 'block';
+
+      const name = document.getElementById('name').value || 'Anonymous';
+      const questionText = document.getElementById('question').value.trim();
+      const isPublic = document.getElementById('isPublic').checked;
+
+      if (!questionText) return;
+
+      const question = {
+        name,
+        text: questionText,
+        isPublic,
+        timestamp: new Date().toISOString()
+      };
+
+      let questions = JSON.parse(localStorage.getItem('geo_questions')) || [];
+      questions.push(question);
+      localStorage.setItem('geo_questions', JSON.stringify(questions));
+
+      form.reset();
+      renderQuestions();
     });
+
+    function renderQuestions() {
+      const questions = JSON.parse(localStorage.getItem('geo_questions')) || [];
+      questionList.innerHTML = '';
+
+      questions.filter(q => q.isPublic).reverse().forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.innerHTML = `
+          <strong>${q.name}</strong> asked:<br>
+          <p>${q.text}</p>
+          <small>${new Date(q.timestamp).toLocaleString()}</small>
+        `;
+        questionList.appendChild(card);
+      });
+    }
+
+    // Load existing questions on page load
+    window.onload = function() {
+      switchToStudentMode();
+      renderQuestions();
+    };
   </script>
 
 </body>
