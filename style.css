@@ -1,23 +1,4 @@
-/* ----------------------------
-   eGeoHub CSS - Modern Style
-   ---------------------------- */
-
-/* ========= Root Variables ========= */
-:root {
-  --font-main: 'Poppins', sans-serif;
-  --primary-color: #007acc;
-  --secondary-color: #00c6ff;
-  --danger-color: #e74c3c;
-  --background-gradient: linear-gradient(to bottom, #e0f7fa 0%, #ffffff 100%);
-  --card-bg: #ffffff;
-  --light-card-bg: #f9f9f9;
-  --text-main: #333;
-  --text-link: #0056b3;
-  --text-link-hover: #003d80;
-  --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* ========= Global Reset ========= */
+/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -25,13 +6,13 @@
 }
 
 body {
-  font-family: var(--font-main);
-  background: var(--background-gradient);
-  color: var(--text-main);
+  font-family: Arial, sans-serif;
+  background: #f9f9f9;
+  color: #333;
   line-height: 1.6;
 }
 
-/* ========= Header ========= */
+/* Header */
 .site-header {
   display: flex;
   justify-content: space-between;
@@ -42,50 +23,44 @@ body {
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .main-nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 .main-nav a {
   text-decoration: none;
-  color: var(--text-main);
+  color: #333;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
-.main-nav a:hover {
-  color: var(--primary-color);
-}
-
-/* ========= Hero Section ========= */
+/* Hero section */
 .hero {
-  background: url('your-hero-image.jpg') center/cover no-repeat;
+  background: url('你的背景图片.jpg') center/cover no-repeat;
   height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 }
 
 .hero-content {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 8px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content h1 {
-  font-size: 36px;
+  font-size: 32px;
   margin-bottom: 10px;
 }
 
@@ -93,75 +68,37 @@ body {
   font-size: 18px;
 }
 
-/* ========= Content Sections ========= */
-.content-section,
+/* Grid sections */
 .grid-section {
-  background: var(--card-bg);
-  margin: 40px 20px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: var(--shadow-light);
-}
-
-.content-section h2,
-.grid-section h2 {
-  font-size: 28px;
-  text-align: center;
+  padding: 0 20px 40px;
+  background: #fff;
   margin-bottom: 20px;
 }
 
-.content-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 10px;
+.grid-section h2 {
+  font-size: 28px;
+  margin: 20px 0;
+  text-align: center;
 }
 
-.content-section li {
-  margin-bottom: 16px;
-  font-size: 20px;
-  color: var(--text-main);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-}
-
-.content-section li::before {
-  content: "🌎";
-  margin-right: 12px;
-  font-size: 20px;
-}
-
-.content-section a {
-  color: var(--text-link);
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s;
-}
-
-.content-section a:hover {
-  color: var(--text-link-hover);
-}
-
-/* ========= Grid Cards ========= */
+/* Cards */
 .grid-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
-  padding: 20px 0;
 }
 
 .card {
-  background: var(--light-card-bg);
-  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s;
-  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -171,113 +108,94 @@ body {
 }
 
 .card h3 {
-  padding: 15px;
+  padding: 10px;
   font-size: 18px;
+  text-align: center;
 }
 
-/* ========= Table Styles ========= */
+/* Content sections */
+.content-section {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.content-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Lists and links */
+.content-section ul {
+  list-style: disc inside;
+}
+
+.content-section a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+/* Videos */
+.video-embed {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* Table styles (for Classroom Points) */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: #fff;
-  box-shadow: var(--shadow-light);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-th, td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-  text-align: left;
 }
 
 thead {
   background-color: #eaf6fb;
 }
 
-/* ========= Buttons ========= */
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Buttons */
 button {
-  padding: 10px 20px;
-  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+  padding: 8px 16px;
+  background-color: #007acc;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
+  transition: background-color 0.3s;
 }
 
 button:hover {
-  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-  transform: scale(1.05);
+  background-color: #005f99;
 }
 
-/* ========= Inputs ========= */
-input,
-textarea {
-  padding: 10px;
+/* Input fields */
+input, textarea {
+  padding: 8px;
   width: 100%;
+  max-width: 600px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-  margin-top: 8px;
-  font-family: var(--font-main);
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
-/* ========= Responsive Design ========= */
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     height: 200px;
   }
-
   .hero-content h1 {
-    font-size: 26px;
+    font-size: 24px;
   }
-
-  button {
+  .video-embed iframe {
     width: 100%;
+    height: auto;
   }
-}
-
-/* ========= Special: Ask Section ========= */
-#ask ul li.private {
-  background-color: #fff4f4;
-  border-left: 4px solid var(--danger-color);
-}
-
-#ask ul li span.private-tag {
-  color: var(--danger-color);
-  font-weight: 600;
-  font-size: 14px;
-  margin-left: 10px;
-  cursor: help;
-}
-
-#ask ul li span.private-tag::before {
-  content: '🔒';
-  margin-right: 4px;
-}
-
-/* ========= Community Section ========= */
-#community textarea {
-  resize: vertical;
-}
-
-#community ul li {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-#community button {
-  background: #28a745;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  padding: 8px 12px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: 0.3s;
-}
-
-#community button:hover {
-  background: #218838;
 }
