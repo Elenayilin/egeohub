@@ -2,229 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eGeoHub - Learn Geography Easily</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #007acc;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #005f99;
-    }
-
-    nav a {
-      color: white;
-      padding: 15px 20px;
-      text-decoration: none;
-      display: block;
-    }
-
-    nav a:hover {
-      background-color: #004d80;
-    }
-
-    .content-section {
-      display: none;
-      padding: 20px;
-    }
-
-    .active {
-      display: block;
-    }
-
-    .button-container {
-      text-align: center;
-      margin: 20px;
-    }
-
-    .toggle-button {
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .teacher {
-      background-color: #ff9800;
-      color: white;
-    }
-
-    .student {
-      background-color: #4caf50;
-      color: white;
-    }
-
-    .toggle-button.active {
-      box-shadow: 0 0 0 2px white inset;
-    }
-
-    textarea, input {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    #questionList {
-      margin-top: 20px;
-    }
-
-    .question-card {
-      background-color: white;
-      padding: 15px;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 15px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>eGeoHub - Geography Learning Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <header>
-    <h1>Welcome to eGeoHub</h1>
-    <p>Your Gateway to Engaging Geography Learning</p>
+
+  <!-- Particle Background -->
+  <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="logo">eGeoHub</div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#y7-10">Y7–10</a></li>
+        <li><a href="#vce">VCE</a></li>
+        <li><a href="#practice">Practice</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#community">Community</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <nav>
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('lessons')">Lessons</a>
-    <a href="#" onclick="showSection('resources')">Resources</a>
-    <a href="#" onclick="showSection('ask')">Ask a Question</a>
-  </nav>
-
-  <div class="button-container">
-    <button class="toggle-button student" onclick="switchToStudentMode()">I'm a Student</button>
-    <button class="toggle-button teacher" onclick="switchToTeacherMode()">I'm a Teacher</button>
-  </div>
-
-  <section id="home" class="content-section active">
-    <h2>Welcome!</h2>
-    <p>This site is designed to help students and teachers explore the world of geography through interactive lessons, helpful resources, and engaging questions.</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to eGeoHub</h1>
+      <p>Your central resource for mastering Geography from Year 7 to VCE</p>
+    </div>
   </section>
 
-  <section id="lessons" class="content-section">
-    <h2>Lesson Plans</h2>
-    <p>Coming soon: Explore downloadable and interactive lesson plans tailored for high school geography topics.</p>
+  <!-- Y7–10 Section -->
+  <section class="grid-section" id="y7-10">
+    <h2>Year 7–10 Geography</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?mountain" alt="Unit">
+        <h3>Landforms & Landscapes</h3>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?urban" alt="Unit">
+        <h3>Urbanisation</h3>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?water" alt="Unit">
+        <h3>Water Resources</h3>
+      </div>
+    </div>
   </section>
 
-  <section id="resources" class="content-section">
-    <h2>Useful Resources</h2>
+  <!-- VCE Section -->
+  <section class="grid-section" id="vce">
+    <h2>VCE Geography</h2>
+    <div class="grid-cards">
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?climate" alt="Unit">
+        <h3>Hazards & Disasters</h3>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?migration" alt="Unit">
+        <h3>Population Dynamics</h3>
+      </div>
+      <div class="card">
+        <img src="https://source.unsplash.com/featured/?sustainability" alt="Unit">
+        <h3>Sustainability</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice Centre -->
+  <section class="content-section" id="practice">
+    <h2>Practice Centre</h2>
     <ul>
-      <li><a href="#">Maps and Atlases</a></li>
-      <li><a href="#">Geography Glossary</a></li>
-      <li><a href="#">Interactive Quizzes</a></li>
+      <li><a href="#">Multiple Choice Quizzes</a></li>
+      <li><a href="#">Case Study Challenges</a></li>
+      <li><a href="#">VCE Practice Papers</a></li>
     </ul>
   </section>
 
-  <!-- Ask a Question -->
-  <section id="ask" class="content-section">
-    <h2>Ask a Question</h2>
-    <div style="text-align: center; margin-top: 20px;">
-      <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-        <div style="text-align: left; margin-bottom: 10px;">
-          <label for="name">Name (optional):</label>
-          <input type="text" id="name" name="name" placeholder="You can leave this blank">
-        </div>
-        <div style="text-align: left; margin-bottom: 10px;">
-          <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-          <textarea id="question" name="question" rows="4" required></textarea>
-        </div>
-        <div style="text-align: left; margin-bottom: 10px;">
-          <label><input type="checkbox" id="isPublic" checked> Make this question public</label>
-        </div>
-        <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-      </form>
-    </div>
-    <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;"></div>
+  <!-- Resources -->
+  <section class="content-section" id="resources">
+    <h2>Resources</h2>
+    <ul>
+      <li><a href="#">Geography Revision Notes</a></li>
+      <li><a href="#">Model Answers & Essay Starters</a></li>
+      <li><a href="#">Fieldwork Tools & Templates</a></li>
+    </ul>
   </section>
 
+  <!-- Community -->
+  <section class="content-section" id="community">
+    <h2>Community</h2>
+    <textarea rows="4" placeholder="Ask a question or share your tip..."></textarea>
+    <button type="submit">Post</button>
+    <ul>
+      <li>🌍 <strong>Alex:</strong> Any tips for Unit 3 Hazard Mapping?</li>
+      <li>🌍 <strong>Jamie:</strong> Found a great resource for urban planning!</li>
+    </ul>
+  </section>
+
+  <!-- Scripts -->
+  <script src="particles.min.js"></script>
   <script>
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll('.content-section');
-      sections.forEach(section => section.classList.remove('active'));
-      document.getElementById(sectionId).classList.add('active');
-    }
-
-    function switchToStudentMode() {
-      document.body.classList.remove('teacher-mode');
-      document.body.classList.add('student-mode');
-      document.querySelector('.student').classList.add('active');
-      document.querySelector('.teacher').classList.remove('active');
-    }
-
-    function switchToTeacherMode() {
-      document.body.classList.remove('student-mode');
-      document.body.classList.add('teacher-mode');
-      document.querySelector('.teacher').classList.add('active');
-      document.querySelector('.student').classList.remove('active');
-    }
-
-    // Handle question form
-    const form = document.getElementById('questionForm');
-    const questionList = document.getElementById('questionList');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const name = document.getElementById('name').value || 'Anonymous';
-      const questionText = document.getElementById('question').value.trim();
-      const isPublic = document.getElementById('isPublic').checked;
-
-      if (!questionText) return;
-
-      const question = {
-        name,
-        text: questionText,
-        isPublic,
-        timestamp: new Date().toISOString()
-      };
-
-      let questions = JSON.parse(localStorage.getItem('geo_questions')) || [];
-      questions.push(question);
-      localStorage.setItem('geo_questions', JSON.stringify(questions));
-
-      form.reset();
-      renderQuestions();
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 50, density: { enable: true, value_area: 800 } },
+        color: { value: "#007acc" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#007acc",
+          opacity: 0.4,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
     });
-
-    function renderQuestions() {
-      const questions = JSON.parse(localStorage.getItem('geo_questions')) || [];
-      questionList.innerHTML = '';
-
-      questions.filter(q => q.isPublic).reverse().forEach(q => {
-        const card = document.createElement('div');
-        card.className = 'question-card';
-        card.innerHTML = `
-          <strong>${q.name}</strong> asked:<br>
-          <p>${q.text}</p>
-          <small>${new Date(q.timestamp).toLocaleString()}</small>
-        `;
-        questionList.appendChild(card);
-      });
-    }
-
-    // Load existing questions on page load
-    window.onload = function() {
-      switchToStudentMode();
-      renderQuestions();
-    };
   </script>
-
 </body>
 </html>
