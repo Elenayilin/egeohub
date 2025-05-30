@@ -228,25 +228,25 @@ function renderTable() {
     else if (index === 1) { medal = '🥈 '; color = 'silver'; }
     else if (index === 2) { medal = '🥉 '; color = 'peru'; }
 
-    table.innerHTML += 
+    table.innerHTML += `
       <tr>
         <td style="padding: 10px; border: 1px solid #ddd; color: ${color}; font-weight: bold;">${medal}${student.name}</td>
         <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
         <td style="padding: 10px; border: 1px solid #ddd;">${
-          isTeacherMode ? 
+          isTeacherMode ? `
           <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1</button>
           <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; margin-right: 5px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1</button>
           <button onclick="deleteStudent(${index})" style="padding: 6px 10px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
-           : ''
+          ` : ''
         }</td>
       </tr>
-    ;
+    `;
   });
 }
 
 // 积分动画
 function highlightPoint(index) {
-  const cell = document.getElementById(points-${index});
+  const cell = document.getElementById(`points-${index}`);
   if (cell) {
     cell.style.backgroundColor = '#ffeb3b';
     setTimeout(() => {
@@ -369,7 +369,7 @@ document.getElementById('questionForm').addEventListener('submit', function(even
     const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
     allQuestions.push({ name: name, question: question });
     localStorage.setItem('questions', JSON.stringify(allQuestions));
-    alert('Thanks for your question!' + (name ?  (From ${name}) : ''));
+    alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
     this.reset();
     displayQuestions();
   }
@@ -381,169 +381,26 @@ function displayQuestions() {
   const list = document.getElementById('questionsDisplay');
   list.innerHTML = '';
   allQuestions.forEach(q => {
-    list.innerHTML += <li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>;
+    list.innerHTML += `<li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>`;
   });
 }
 displayQuestions();
 </script>
 
-<!-- Ask a Question Section with new checkbox -->
-<section id="ask" class="content-section">
-  <h2>Ask a Question</h2>
-  <div style="text-align: center; margin-top: 20px;">
-    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="name">Name (optional):</label>
-        <input type="text" id="name" name="name" placeholder="You can leave this blank">
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
-        <textarea id="question" name="question" rows="4" required></textarea>
-      </div>
-      <div style="text-align: left; margin-bottom: 10px;">
-        <input type="checkbox" id="isPublic" name="isPublic" checked>
-        <label for="isPublic">Make my question visible to others in the community</label>
-      </div>
-      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
-    </form>
-  </div>
-  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
-    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
-  </div>
-</section>
+  <!-- Contact -->
+  <section id="contact" class="content-section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:yhan0104@student.monash.edu">yhan0104@student.monash.edu</a></p>
+  </section>
 
-<!-- Community Section -->
-<section id="community" class="content-section" style="padding: 40px 20px; background-color: #f7fff0;">
-  <h2 style="text-align: center; margin-bottom: 20px;">Student Community Tree</h2>
-  <div style="position: relative; max-width: 900px; margin: 0 auto; background: url('https://cdn.pixabay.com/photo/2014/04/05/11/39/tree-316590_1280.jpg') center/cover no-repeat; height: 500px; border-radius: 12px;">
-    <div id="applesContainer" style="position: relative; width: 100%; height: 100%;"></div>
-  </div>
-  <div style="text-align: center; margin-top: 30px;">
-    <img src="https://cdn-icons-png.flaticon.com/512/706/706164.png" alt="Basket" style="width: 80px;">
-    <h3>Resolved Questions</h3>
-    <ul id="basketContainer" style="list-style-type: none; padding: 0; max-width: 600px; margin: 10px auto 0;"></ul>
-    <button onclick="teacherLoginForPrivateQuestions()" style="margin-top: 20px; padding: 8px 16px; background-color: #555; color: white; border: none; border-radius: 5px; cursor: pointer;">View Private Questions</button>
-  </div>
-</section>
+  <script>
+    document.getElementById('localAskForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('localAskForm').style.display = 'none';
+      document.getElementById('thankYouMessage').style.display = 'block';
+    });
+  </script>
 
-<script>
-const PASSWORD = 'monash';
-const defaultStudents = [
-  { name: "Alice Chen", points: 52 },
-  { name: "Ben Lee", points: 40 },
-  { name: "Chloe Zhang", points: 35 }
-];
-let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
-let isTeacherMode = false;
-
-// 原有函数省略...
-
-function displayQuestions() {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const list = document.getElementById('questionsDisplay');
-  list.innerHTML = '';
-  allQuestions.forEach(q => {
-    const li = document.createElement('li');
-    li.textContent = `${q.name || 'Anonymous'}: ${q.question}`;
-    list.appendChild(li);
-  });
-}
-
-function displayCommunity() {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const applesDiv = document.getElementById('applesContainer');
-  const basketList = document.getElementById('basketContainer');
-  applesDiv.innerHTML = '';
-  basketList.innerHTML = '';
-
-  allQuestions.forEach((q, index) => {
-    if (q.isPublic && !q.isResolved) {
-      const apple = document.createElement('img');
-      apple.src = 'https://cdn-icons-png.flaticon.com/512/415/415733.png';
-      apple.style.position = 'absolute';
-      apple.style.top = `${Math.random() * 60 + 20}%`;
-      apple.style.left = `${Math.random() * 80 + 10}%`;
-      apple.style.width = '40px';
-      apple.style.cursor = 'pointer';
-      apple.title = `${q.name || 'Anonymous'}: ${q.question}${q.reply ? `\nReply: ${q.reply}` : ''}`;
-      if (isTeacherMode) {
-        apple.onclick = () => manageQuestion(index);
-      }
-      applesDiv.appendChild(apple);
-    } else if (q.isResolved) {
-      const li = document.createElement('li');
-      li.textContent = `${q.name || 'Anonymous'}: ${q.question}`;
-      basketList.appendChild(li);
-    }
-  });
-}
-
-function manageQuestion(index) {
-  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-  const q = allQuestions[index];
-  const reply = prompt(`Reply to ${q.name || 'Anonymous'}:\n${q.question}`, q.reply || '');
-  if (reply !== null) {
-    q.reply = reply;
-  }
-  const markResolved = confirm('Mark this question as resolved?');
-  if (markResolved) {
-    q.isResolved = true;
-  }
-  const confirmDelete = confirm('Do you also want to delete this question from the system?');
-  if (confirmDelete) {
-    allQuestions.splice(index, 1);
-  } else {
-    allQuestions[index] = q;
-  }
-  localStorage.setItem('questions', JSON.stringify(allQuestions));
-  displayCommunity();
-}
-
-function overrideQuestionForm() {
-  const form = document.getElementById('questionForm');
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const question = document.getElementById('question').value.trim();
-    const isPublic = document.getElementById('isPublic').checked;
-    if (question) {
-      const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-      allQuestions.push({ name, question, isPublic, isResolved: false, reply: '' });
-      localStorage.setItem('questions', JSON.stringify(allQuestions));
-      alert('Thanks for your question!' + (name ? ` (From ${name})` : ''));
-      this.reset();
-      displayQuestions();
-      displayCommunity();
-    }
-  });
-}
-
-function teacherLoginForPrivateQuestions() {
-  const inputPassword = prompt('Enter teacher password to view private questions:');
-  if (inputPassword === PASSWORD) {
-    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
-    const privateQs = allQuestions.filter(q => !q.isPublic && !q.isResolved);
-    const output = privateQs.map(q => `${q.name || 'Anonymous'}: ${q.question}${q.reply ? `\nReply: ${q.reply}` : ''}`).join('\n---\n');
-    alert(output || 'No private questions.');
-  } else {
-    alert('Incorrect password!');
-  }
-}
-
-window.onload = function () {
-  switchToStudentMode();
-  displayQuestions();
-  overrideQuestionForm();
-  displayCommunity();
-};
-</script>
-
-<!-- Contact -->
-<section id="contact" class="content-section">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:yhan0104@student.monash.edu">yhan0104@student.monash.edu</a></p>
-</section>
-  
 </body>
 </html>
+
