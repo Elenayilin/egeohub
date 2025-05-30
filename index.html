@@ -30,7 +30,362 @@
 </head>
 <body>
 
-<!-- 省略前半部分内容，和你原版完全一致，以下为页面尾部脚本修改部分 -->
+<header class="site-header">
+  <div class="logo">eGeoHub</div>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#yrs7-8">Years 7–8</a></li>
+      <li><a href="#yrs9-10">Years 9–10</a></li>
+      <li><a href="#vce">VCE Geography</a></li>
+      <li><a href="#practice">Practice Centre</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#classroom-points">Classroom Points</a></li>
+      <li><a href="#ask">Ask a Question</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Geography Resources for Victorian Secondary Students</h1>
+    <p>Welcome to eGeoHub – your go-to site for Geography learning materials and practice.</p>
+  </div>
+</section>
+
+<section id="yrs7-8" class="grid-section">
+  <h2><img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="Earth Icon" class="section-icon">Years 7–8 Geography</h2>
+  <div class="grid-cards">
+    <div class="card blue-card">
+      <img src="water.jpg" alt="Water in the World">
+      <h3>Water in the World</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="city.jpg" alt="Place and Liveability">
+      <h3>Place and Liveability</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="migration.jpg" alt="Changing Nations">
+      <h3>Changing Nations</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="mountain.jpg" alt="Landscapes and Landforms">
+      <h3>Landscapes and Landforms</h3>
+    </div>
+  </div>
+</section>
+
+<section id="yrs9-10" class="grid-section">
+  <h2><img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="City Icon" class="section-icon">Years 9–10 Geography</h2>
+  <div class="grid-cards">
+    <div class="card blue-card">
+      <img src="wheat.jpg" alt="Biomes and Food Security">
+      <h3>Biomes and Food Security</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="network.jpg" alt="Geographies of Interconnections">
+      <h3>Geographies of Interconnections</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="environment.jpg" alt="Environmental Change and Management">
+      <h3>Environmental Change and Management</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="wellbeing.jpg" alt="Human Wellbeing">
+      <h3>Human Wellbeing</h3>
+    </div>
+  </div>
+</section>
+
+<section id="vce" class="grid-section">
+  <h2><img src="https://cdn-icons-png.flaticon.com/512/1040/1040230.png" alt="School Icon" class="section-icon">VCE Geography (Units 1–4)</h2>
+  <div class="grid-cards">
+    <div class="card blue-card">
+      <img src="volcano.jpg" alt="Hazards and Disasters">
+      <h3>Unit 1: Hazards and Disasters</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="tourism.jpg" alt="Tourism: Issues and Challenges">
+      <h3>Unit 2: Tourism: Issues and Challenges</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="landchange.jpg" alt="Changing the Land">
+      <h3>Unit 3: Changing the Land</h3>
+    </div>
+    <div class="card blue-card">
+      <img src="population.jpg" alt="Human Population Trends and Issues">
+      <h3>Unit 4: Human Population Trends and Issues</h3>
+    </div>
+  </div>
+</section>
+
+  <!-- Practice Centre -->
+  <section id="practice" class="content-section">
+    <h2>Practice Centre</h2>
+    <ul>
+      <li><a href="#">Year 7 Worksheet: Landscapes Investigation</a></li>
+      <li><a href="#">Year 8 Worksheet: Urbanisation in Australia</a></li>
+      <li><a href="#">Year 9 Worksheet: Biomes and Interconnections</a></li>
+      <li><a href="#">Year 10 Worksheet: Environmental Management</a></li>
+      <li><a href="#">VCE Unit 1 Worksheet: Hazard Response Analysis</a></li>
+      <li><a href="#">VCE Unit 2 Worksheet: Tourism Impact Study</a></li>
+    </ul>
+  </section>
+
+  <!-- Resources -->
+  <section id="resources" class="content-section">
+    <h2>Resources</h2>
+    <ul>
+      <li><a href="https://www.ga.gov.au/" target="_blank">Geoscience Australia</a></li>
+      <li><a href="http://www.bom.gov.au/" target="_blank">Bureau of Meteorology (BOM)</a></li>
+      <li><a href="https://www.abs.gov.au/" target="_blank">Australian Bureau of Statistics (ABS)</a></li>
+      <li><a href="https://globalforestwatch.org/" target="_blank">Global Forest Watch</a></li>
+    </ul>
+  </section>
+
+ <!-- Classroom Points -->
+<section id="classroom-points" class="content-section">
+  <h2>Classroom Points</h2>
+
+  <!-- 模式切换按钮 -->
+  <div style="text-align: center; margin-bottom: 20px;">
+    <button onclick="switchToStudentMode()" style="padding: 8px 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">Student Mode</button>
+    <button onclick="switchToTeacherMode()" style="padding: 8px 16px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">Teacher Mode</button>
+  </div>
+
+  <!-- 表格 -->
+  <div id="tableContainer">
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+      <thead style="background-color: #eaf6fb;">
+        <tr>
+          <th style="padding: 10px; border: 1px solid #ddd;">Student</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Points</th>
+          <th style="padding: 10px; border: 1px solid #ddd;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="pointsTable"></tbody>
+    </table>
+
+    <div id="addStudentArea" style="margin-top: 30px; text-align: center;">
+      <input type="text" id="newStudentName" placeholder="Enter student name" style="padding: 8px; width: 250px; border: 1px solid #ccc; border-radius: 5px;">
+      <button onclick="addStudent()" style="padding: 8px 16px; margin-left: 10px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">Add Student</button>
+    </div>
+  </div>
+
+  <!-- 排行榜柱状图 -->
+  <div style="display: flex; justify-content: center; margin-top: 30px;">
+    <canvas id="pointsChart" style="display: none; max-width: 700px; width: 100%; height: 200px;"></canvas>
+  </div>
+</section>
+
+<hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
+
+<!-- Ask a Question -->
+<section id="ask" class="content-section">
+  <h2>Ask a Question</h2>
+  <div style="text-align: center; margin-top: 20px;">
+    <form id="questionForm" style="max-width: 600px; margin: 0 auto;">
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="name">Name (optional):</label>
+        <input type="text" id="name" name="name" placeholder="You can leave this blank">
+      </div>
+      <div style="text-align: left; margin-bottom: 10px;">
+        <label for="question">Your Question (feel free to ask anything you don't understand):</label>
+        <textarea id="question" name="question" rows="4" required></textarea>
+      </div>
+      <button type="submit" style="padding: 10px 20px; background: #007acc; border: none; border-radius: 5px; color: white; cursor: pointer;">Submit</button>
+    </form>
+  </div>
+
+  <div id="questionList" style="margin-top: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+    <h3 style="text-align: center; margin-bottom: 15px;">Submitted Questions</h3>
+    <ul id="questionsDisplay" style="list-style-type: none; padding-left: 0;"></ul>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const PASSWORD = 'monash';
+const defaultStudents = [
+  { name: "Alice Chen", points: 52 },
+  { name: "Ben Lee", points: 40 },
+  { name: "Chloe Zhang", points: 35 }
+];
+let students = JSON.parse(localStorage.getItem('students')) || defaultStudents;
+let isTeacherMode = false;
+let chartInstance = null;
+
+// 渲染教师表格
+function renderTable() {
+  students.sort((a, b) => b.points - a.points);
+  const table = document.getElementById('pointsTable');
+  table.innerHTML = '';
+  students.forEach((student, index) => {
+    const isGold = student.points >= 50;
+    let medal = '';
+    let color = isGold ? 'goldenrod' : '#333';
+    if (index === 0) { medal = '🥇 '; color = 'goldenrod'; }
+    else if (index === 1) { medal = '🥈 '; color = 'silver'; }
+    else if (index === 2) { medal = '🥉 '; color = 'peru'; }
+
+    table.innerHTML += 
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd; color: ${color}; font-weight: bold;">${medal}${student.name}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;" id="points-${index}">${student.points}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          isTeacherMode ? 
+          <button onclick="changePoint(${index}, 1)" style="padding: 6px 10px; margin-right: 5px; background-color: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;">+1</button>
+          <button onclick="changePoint(${index}, -1)" style="padding: 6px 10px; margin-right: 5px; background-color: #e60000; color: white; border: none; border-radius: 5px; cursor: pointer;">-1</button>
+          <button onclick="deleteStudent(${index})" style="padding: 6px 10px; background-color: #888; color: white; border: none; border-radius: 5px; cursor: pointer;">Delete</button>
+           : ''
+        }</td>
+      </tr>
+    ;
+  });
+}
+
+// 积分动画
+function highlightPoint(index) {
+  const cell = document.getElementById(points-${index});
+  if (cell) {
+    cell.style.backgroundColor = '#ffeb3b';
+    setTimeout(() => {
+      cell.style.backgroundColor = '';
+    }, 500);
+  }
+}
+
+// 修改积分
+function changePoint(index, delta) {
+  students[index].points += delta;
+  saveData();
+  highlightPoint(index);
+  renderTable();
+}
+
+// 保存
+function saveData() {
+  localStorage.setItem('students', JSON.stringify(students));
+}
+
+// 删除学生
+function deleteStudent(index) {
+  if (confirm("Are you sure you want to remove this student?")) {
+    students.splice(index, 1);
+    saveData();
+    renderTable();
+  }
+}
+
+// 添加学生
+function addStudent() {
+  const nameInput = document.getElementById('newStudentName');
+  const newName = nameInput.value.trim();
+  if (newName) {
+    students.push({ name: newName, points: 0 });
+    saveData();
+    renderTable();
+    nameInput.value = '';
+  } else {
+    alert('Please enter a student name.');
+  }
+}
+
+// 模式切换
+function switchToTeacherMode() {
+  const inputPassword = prompt('Enter teacher password:');
+  if (inputPassword === PASSWORD) {
+    isTeacherMode = true;
+    document.getElementById('tableContainer').style.display = 'block';
+    document.getElementById('pointsChart').style.display = 'none';
+    renderTable();
+  } else {
+    alert('Incorrect password!');
+  }
+}
+
+function switchToStudentMode() {
+  isTeacherMode = false;
+  document.getElementById('tableContainer').style.display = 'none';
+  document.getElementById('pointsChart').style.display = 'block';
+  renderChart();
+}
+
+// 渲染学生排行榜
+function renderChart() {
+  const ctx = document.getElementById('pointsChart').getContext('2d');
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+  students.sort((a, b) => b.points - a.points);
+
+  const colors = students.map((s, index) => {
+    if (index === 0) return 'gold';
+    if (index === 1) return 'silver';
+    if (index === 2) return 'peru';
+    return '#81c784';
+  });
+
+  chartInstance = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: students.map(s => s.name),
+      datasets: [{
+        label: 'Points',
+        data: students.map(s => s.points),
+        backgroundColor: colors,
+        borderRadius: 8,
+        categoryPercentage: 0.6,
+        barPercentage: 0.8
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      scales: {
+        x: { beginAtZero: true, grid: { display: false } },
+        y: { grid: { display: false }, ticks: { color: '#333', font: { size: 14 } } }
+      },
+      plugins: {
+        legend: { display: false }
+      },
+      animation: {
+        duration: 800,
+        easing: 'easeOutBounce'
+      }
+    }
+  });
+}
+
+// 页面加载默认学生模式
+window.onload = switchToStudentMode;
+
+// 提问保存
+document.getElementById('questionForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const question = document.getElementById('question').value.trim();
+  if (question) {
+    const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+    allQuestions.push({ name: name, question: question });
+    localStorage.setItem('questions', JSON.stringify(allQuestions));
+    alert('Thanks for your question!' + (name ?  (From ${name}) : ''));
+    this.reset();
+    displayQuestions();
+  }
+});
+
+// 展示提问
+function displayQuestions() {
+  const allQuestions = JSON.parse(localStorage.getItem('questions')) || [];
+  const list = document.getElementById('questionsDisplay');
+  list.innerHTML = '';
+  allQuestions.forEach(q => {
+    list.innerHTML += <li style="padding: 8px; border-bottom: 1px solid #ddd;"><strong>${q.name ? q.name : 'Anonymous'}:</strong> ${q.question}</li>;
+  });
+}
+displayQuestions();
+</script>
 
 <!-- Contact -->
 <section id="contact" class="content-section">
