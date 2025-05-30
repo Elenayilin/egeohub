@@ -1,4 +1,23 @@
-/* Reset */
+/* ----------------------------
+   eGeoHub CSS - Modern Style
+   ---------------------------- */
+
+/* ========= Root Variables ========= */
+:root {
+  --font-main: 'Poppins', sans-serif;
+  --primary-color: #007acc;
+  --secondary-color: #00c6ff;
+  --danger-color: #e74c3c;
+  --background-gradient: linear-gradient(to bottom, #e0f7fa 0%, #ffffff 100%);
+  --card-bg: #ffffff;
+  --light-card-bg: #f9f9f9;
+  --text-main: #333;
+  --text-link: #0056b3;
+  --text-link-hover: #003d80;
+  --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ========= Global Reset ========= */
 * {
   margin: 0;
   padding: 0;
@@ -6,76 +25,24 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa 0%, #ffffff 100%);
-  color: #333;
+  font-family: var(--font-main);
+  background: var(--background-gradient);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
-<script>
-particlesJS('particles-js', {
-  particles: {
-    number: {
-      value: 50,
-      density: { enable: true, value_area: 800 }
-    },
-    color: { value: "#007acc" },
-    shape: {
-      type: "circle",
-      stroke: { width: 0, color: "#000000" }
-    },
-    opacity: {
-      value: 0.5,
-      random: true
-    },
-    size: {
-      value: 3,
-      random: true
-    },
-    line_linked: {
-      enable: true,
-      distance: 150,
-      color: "#007acc",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false
-    }
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: { enable: true, mode: "repulse" },
-      onclick: { enable: true, mode: "push" }
-    },
-    modes: {
-      repulse: { distance: 100 },
-      push: { particles_nb: 4 }
-    }
-  },
-  retina_detect: true
-});
-</script>
-
-/* Header */
+/* ========= Header ========= */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: #fff;
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -91,16 +58,16 @@ particlesJS('particles-js', {
 
 .main-nav a {
   text-decoration: none;
-  color: #333;
+  color: var(--text-main);
   font-weight: 500;
   transition: color 0.3s;
 }
 
 .main-nav a:hover {
-  color: #007acc;
+  color: var(--primary-color);
 }
 
-/* Hero Section */
+/* ========= Hero Section ========= */
 .hero {
   background: url('your-hero-image.jpg') center/cover no-repeat;
   height: 300px;
@@ -110,11 +77,11 @@ particlesJS('particles-js', {
 }
 
 .hero-content {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content h1 {
@@ -126,22 +93,23 @@ particlesJS('particles-js', {
   font-size: 18px;
 }
 
-/* General Section Layout */
-.content-section, .grid-section {
-  background: #ffffff;
+/* ========= Content Sections ========= */
+.content-section,
+.grid-section {
+  background: var(--card-bg);
   margin: 40px 20px;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  box-shadow: var(--shadow-light);
 }
 
-.content-section h2, .grid-section h2 {
+.content-section h2,
+.grid-section h2 {
   font-size: 28px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* Practice Centre and Resources */
 .content-section ul {
   list-style: none;
   padding-left: 0;
@@ -151,7 +119,7 @@ particlesJS('particles-js', {
 .content-section li {
   margin-bottom: 16px;
   font-size: 20px;
-  color: #333;
+  color: var(--text-main);
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -164,18 +132,17 @@ particlesJS('particles-js', {
 }
 
 .content-section a {
-  color: #0056b3;
+  color: var(--text-link);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s;
 }
 
 .content-section a:hover {
-  color: #003d80;
-  text-decoration: none;
+  color: var(--text-link-hover);
 }
 
-/* Grid Sections (Y7-10 and VCE) */
+/* ========= Grid Cards ========= */
 .grid-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -184,17 +151,17 @@ particlesJS('particles-js', {
 }
 
 .card {
-  background: #f9f9f9;
+  background: var(--light-card-bg);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s;
   text-align: center;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -208,13 +175,13 @@ particlesJS('particles-js', {
   font-size: 18px;
 }
 
-/* Table Styles (for Classroom Points) */
+/* ========= Table Styles ========= */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  background: #fff;
+  box-shadow: var(--shadow-light);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -229,10 +196,10 @@ thead {
   background-color: #eaf6fb;
 }
 
-/* Buttons */
+/* ========= Buttons ========= */
 button {
   padding: 10px 20px;
-  background: linear-gradient(to right, #00c6ff, #0072ff);
+  background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
   color: white;
   border: none;
   border-radius: 6px;
@@ -241,40 +208,44 @@ button {
 }
 
 button:hover {
-  background: linear-gradient(to right, #0072ff, #00c6ff);
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
   transform: scale(1.05);
 }
 
-/* Inputs */
-input, textarea {
+/* ========= Inputs ========= */
+input,
+textarea {
   padding: 10px;
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 6px;
   margin-top: 8px;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-main);
 }
 
-/* Responsive Design */
+/* ========= Responsive Design ========= */
 @media (max-width: 768px) {
   .hero {
     height: 200px;
   }
+
   .hero-content h1 {
     font-size: 26px;
   }
+
   button {
     width: 100%;
   }
 }
-/* ---------- Ask a Question: Enhanced Private Style ---------- */
+
+/* ========= Special: Ask Section ========= */
 #ask ul li.private {
   background-color: #fff4f4;
-  border-left: 4px solid #e74c3c;
+  border-left: 4px solid var(--danger-color);
 }
 
 #ask ul li span.private-tag {
-  color: #e74c3c;
+  color: var(--danger-color);
   font-weight: 600;
   font-size: 14px;
   margin-left: 10px;
@@ -286,7 +257,7 @@ input, textarea {
   margin-right: 4px;
 }
 
-/* ---------- Community Section ---------- */
+/* ========= Community Section ========= */
 #community textarea {
   resize: vertical;
 }
