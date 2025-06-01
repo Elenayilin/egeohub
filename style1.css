@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f4fafd;
+}
+header {
+  background-color: #0077b6;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+section {
+  padding: 30px;
+  max-width: 960px;
+  margin: auto;
+}
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+iframe {
+  width: 100%;
+  height: 360px;
+  border: none;
+  border-radius: 6px;
+}
+.card h2 {
+  color: #023e8a;
+}
+.card ul {
+  padding-left: 20px;
+}
+.upload-box, .download-box {
+  margin-top: 15px;
+}
+input[type="file"] {
+  margin-top: 10px;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #caf0f8;
+}
